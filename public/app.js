@@ -78,7 +78,9 @@ function App() {
   };
 
   return (
-    <main className="w-full max-w-xl mx-auto p-0 flex flex-col h-[90vh] bg-white rounded-lg shadow-md overflow-hidden">
+    <main className="w-full max-w-3xl mx-auto p-0 flex flex-col h-[90vh] bg-white rounded-lg shadow-md overflow-hidden">
+      <img src="/kontext-chat.png" className="w-full h-auto"></img>
+      
       <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
         {messages.map((msg, idx) => (
           <div
@@ -101,7 +103,7 @@ function App() {
                 <img
                   src={msg.image}
                   alt="generated"
-                  className="w-48 h-48 object-cover rounded-xl mb-2"
+                  className="w-full h-auto object-cover rounded-xl mb-2"
                 />
               ) : null}
               {msg.type === 'loading' ? (
