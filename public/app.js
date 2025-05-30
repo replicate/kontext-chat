@@ -96,71 +96,121 @@ function App() {
   };
 
   return (
-    <main className="w-full max-w-3xl mx-auto p-0 flex flex-col h-[90vh] bg-white rounded-lg shadow-md overflow-hidden">
-      <a href="https://github.com/replicate/kontext-chat-cloudflare"><img src="/kontext-chat-rainbow.png" className="w-1/2 mx-auto"></img></a>
+    <div>
+      <main className="w-full max-w-3xl mx-auto p-0 flex flex-col h-[90vh] bg-white rounded-lg shadow-md overflow-hidden mt-12">
+        <a href="https://github.com/replicate/kontext-chat-cloudflare"><img src="/kontext-chat-rainbow.png" className="w-1/2 mx-auto" alt="Kontext Chat" /></a>
 
-      <p className="text-center text-lg prose max-w-none my-6 mx-6 text-gray-500">
-        This is an open-source demo app that lets you edit images using a chat interface. Under the hood, it's powered by the new <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline">Flux Kontext Pro</a> model from <a href="https://black-forest-labs.com/" className="underline">Black Forest Labs</a>, running on Replicate. The app is built with Hono and React, running on Cloudflare Workers.
-      </p>
-      
-      <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50" ref={chatContainerRef}>
-        {messages.map((msg, idx) => (
-          <div
-            key={idx}
-            className={
-              msg.from === 'user'
-                ? 'flex justify-end'
-                : 'flex justify-start'
-            }
-          >
+        
+        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50" ref={chatContainerRef}>
+          {messages.map((msg, idx) => (
             <div
+              key={idx}
               className={
-                'rounded-2xl px-4 py-3 ' +
-                (msg.type === 'image'
-                  ? 'w-full'
-                  : 'max-w-xs') + ' ' +
-                (msg.from === 'user'
-                  ? 'bg-blue-500 text-white rounded-br-none'
-                  : 'bg-gray-200 text-gray-900 rounded-bl-none')
+                msg.from === 'user'
+                  ? 'flex justify-end'
+                  : 'flex justify-start'
               }
             >
-              {msg.type === 'image' ? (
-                <img
-                  src={msg.image}
-                  alt="generated"
-                  className="w-full h-auto object-cover rounded-xl mb-2"
-                  onLoad={scrollToBottom}
-                />
-              ) : null}
-              {msg.type === 'loading' ? (
-                <div className="flex items-center gap-2"><span className="animate-pulse">⏳</span> Generating image...</div>
-              ) : null}
-              {msg.text}
+              <div
+                className={
+                  'rounded-2xl px-4 py-3 ' +
+                  (msg.type === 'image'
+                    ? 'w-full'
+                    : 'max-w-xs') + ' ' +
+                  (msg.from === 'user'
+                    ? 'bg-blue-500 text-white rounded-br-none'
+                    : 'bg-gray-200 text-gray-900 rounded-bl-none')
+                }
+              >
+                {msg.type === 'image' ? (
+                  <img
+                    src={msg.image}
+                    alt="generated"
+                    className="w-full h-auto object-cover rounded-xl mb-2"
+                    onLoad={scrollToBottom}
+                  />
+                ) : null}
+                {msg.type === 'loading' ? (
+                  <div className="flex items-center gap-2"><span className="animate-pulse">⏳</span> Generating image...</div>
+                ) : null}
+                {msg.text}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <form
-        onSubmit={handleSend}
-        className="p-4 border-t bg-white flex gap-2"
-        style={{ boxShadow: '0 -2px 8px rgba(0,0,0,0.03)' }}
-      >
-        <input
-          type="text"
-          className="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          placeholder="Type your message..."
-          disabled={loading}
-        />
-        <button
-          type="submit"
-          className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
-          disabled={loading}
+          ))}
+        </div>
+        <form
+          onSubmit={handleSend}
+          className="p-4 border-t bg-white flex gap-2"
+          style={{ boxShadow: '0 -2px 8px rgba(0,0,0,0.03)' }}
         >
-          Send
-        </button>
-      </form>
-    </main>
+          <input
+            type="text"
+            className="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            value={input}
+            onChange={e => setInput(e.target.value)}
+            placeholder="Type your message..."
+            disabled={loading}
+          />
+          <button
+            type="submit"
+            className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            disabled={loading}
+          >
+            Send
+          </button>
+        </form>
+      </main>
+
+      {/* Footer: match chat width, rounded corners, bottom margin */}
+      <div className="w-full max-w-3xl mx-auto rounded-b-lg mb-8">
+        <footer className="">
+          <div className="">
+            <p className="text-center py-6 px-8 text-amber-700 text-2xl mt-12 leading-relaxed">
+              Kontext Chat is powered by <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-amber-800">Flux Kontext Pro</a>, a powerful new image editing model from <a href="https://black-forest-labs.com/" className="underline text-amber-800">Black Forest Labs</a>, running on <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-amber-800">Replicate</a>. The app is built with Hono and React, running on <a href="https://workers.dev/" className="underline text-amber-800">Cloudflare Workers</a>. Check out the <a href="https://github.com/replicate/kontext-chat-cloudflare" className="underline text-amber-800">source code</a> on GitHub.
+            </p>
+
+            <nav className="text-center mt-16">
+              <a
+                className="inline-block relative w-12 h-12 mx-2 opacity-60 hover:opacity-100 transition-all duration-200"
+                href="https://replicate.com?utm_source=project&utm_campaign=kontext-chat-cloudflare"
+              >
+                <img
+                  src="/logomarks/replicate.svg"
+                  alt="Replicate"
+                  data-tooltip-id="replicate-tooltip"
+                  data-tooltip-content="Built by Replicate"
+                  className="p-3 hover:p-1  transition-all duration-200  hover:saturate-100"
+                  style={{width: '100%', height: '100%', position: 'relative'}}
+                />
+              </a>
+
+              <a className="inline-block relative w-12 h-12 mx-2 opacity-60 hover:opacity-100 transition-all duration-200" href="https://cloudflare.com">
+                <img
+                  src="/logomarks/cloudflare.svg"
+                  data-tooltip-id="cloudflare-tooltip"
+                  data-tooltip-content="Hosted on Cloudflare"
+                  alt="Cloudflare"
+                  className="p-3 hover:p-1  transition-all duration-200  hover:saturate-100"
+                  style={{width: '400%', height: '100%', position: 'relative'}}
+                />
+              </a>
+
+              <a
+                className="inline-block relative w-12 h-12 mx-2 opacity-60 hover:opacity-100 transition-all duration-200"
+                href="https://github.com/replicate/kontext-chat-cloudflare"
+              >
+                <img
+                  src="/logomarks/github.svg"
+                  data-tooltip-id="github-tooltip"
+                  data-tooltip-content="Fork it on GitHub"
+                  className="p-3 hover:p-1  transition-all duration-200  hover:saturate-100"
+                  style={{width: '100%', height: '100%', position: 'relative'}}
+                />
+              </a>
+            </nav>
+          </div>
+        </footer>
+      </div>
+    </div>
   );
-} 
+}
