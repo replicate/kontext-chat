@@ -14,5 +14,9 @@
 		"typescript": "^5.5.2",
 		"vitest": "~3.0.7",
 		"wrangler": "^4.18.0"
+	},
+	"dependencies": {
+		"hono": "^4.7.10",
+		"replicate": "^1.0.1"
 	}
 }
