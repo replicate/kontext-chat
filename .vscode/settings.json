@@ -1,5 +1,6 @@
 {
 	"files.associations": {
 		"wrangler.json": "jsonc"
-	}
+	},
+	"djlint.showInstallError": false
 }
