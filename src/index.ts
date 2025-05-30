@@ -1,7 +1,6 @@
 import { Hono } from 'hono';
 import Replicate from 'replicate';
 
-// Add Env type for clarity
 interface Env {
 	REPLICATE_API_TOKEN: string;
 }
@@ -19,8 +18,6 @@ app.post('/generate-image', async (c) => {
 			input_image,
 		},
 	});
-
-	console.log({ output });
 
 	return c.body(output.url());
 });

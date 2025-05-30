@@ -10,17 +10,35 @@ const starterImages = [
 ]
 
 function App() {
-  // Use the first starter image for the initial message
+  // Use a random starter image for the initial message
+  const randomIndex = Math.floor(Math.random() * starterImages.length);
   const [messages, setMessages] = React.useState([
     {
       type: 'image',
-      image: starterImages[0].imageUrl,
-      prompt: starterImages[0].suggestedPrompt,
+      image: starterImages[randomIndex].imageUrl,
+      prompt: starterImages[randomIndex].suggestedPrompt,
       from: 'bot',
     },
   ]);
-  const [input, setInput] = React.useState(starterImages[0].suggestedPrompt);
+  const [input, setInput] = React.useState(starterImages[randomIndex].suggestedPrompt);
   const [loading, setLoading] = React.useState(false);
+
+  // Ref for chat container
+  const chatContainerRef = React.useRef(null);
+
+  // Scroll to bottom when messages change
+  React.useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  // Helper to scroll to bottom (for image onLoad)
+  function scrollToBottom() {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }
 
   // Helper to get the last image URL in the chat
   function getLastImageUrl() {
@@ -79,9 +97,9 @@ function App() {
 
   return (
     <main className="w-full max-w-3xl mx-auto p-0 flex flex-col h-[90vh] bg-white rounded-lg shadow-md overflow-hidden">
-      <img src="/kontext-chat.png" className="w-full h-auto"></img>
+      {/* <img src="/kontext-chat.png" className="w-full h-auto"></img> */}
       
-      <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
+      <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50" ref={chatContainerRef}>
         {messages.map((msg, idx) => (
           <div
             key={idx}
@@ -93,7 +111,10 @@ function App() {
           >
             <div
               className={
-                'rounded-2xl px-4 py-3 max-w-xs ' +
+                'rounded-2xl px-4 py-3 ' +
+                (msg.type === 'image'
+                  ? 'w-full'
+                  : 'max-w-xs') + ' ' +
                 (msg.from === 'user'
                   ? 'bg-blue-500 text-white rounded-br-none'
                   : 'bg-gray-200 text-gray-900 rounded-bl-none')
@@ -104,6 +125,7 @@ function App() {
                   src={msg.image}
                   alt="generated"
                   className="w-full h-auto object-cover rounded-xl mb-2"
+                  onLoad={scrollToBottom}
                 />
               ) : null}
               {msg.type === 'loading' ? (
