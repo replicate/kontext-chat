@@ -97,7 +97,11 @@ function App() {
 
   return (
     <main className="w-full max-w-3xl mx-auto p-0 flex flex-col h-[90vh] bg-white rounded-lg shadow-md overflow-hidden">
-      {/* <img src="/kontext-chat.png" className="w-full h-auto"></img> */}
+      <a href="https://github.com/replicate/kontext-chat-cloudflare"><img src="/kontext-chat-rainbow.png" className="w-1/2 mx-auto"></img></a>
+
+      <p className="text-center text-lg prose max-w-none my-6 mx-6 text-gray-500">
+        This is an open-source demo app that lets you edit images using a chat interface. Under the hood, it's powered by the new <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline">Flux Kontext Pro</a> model from <a href="https://black-forest-labs.com/" className="underline">Black Forest Labs</a>, running on Replicate. The app is built with Hono and React, running on Cloudflare Workers.
+      </p>
       
       <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50" ref={chatContainerRef}>
         {messages.map((msg, idx) => (
@@ -151,7 +155,7 @@ function App() {
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+          className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
           disabled={loading}
         >
           Send
