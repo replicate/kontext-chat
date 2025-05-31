@@ -213,6 +213,7 @@ function App() {
     setPredictionId(null);
     setAbortController(null);
     setLoading(false);
+    setStarterUsed(false);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
