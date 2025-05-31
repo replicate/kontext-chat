@@ -411,13 +411,14 @@ function App() {
                   className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`relative w-full ${
+                    className={`relative ${
                       msg.from === 'user'
-                        ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-3xl px-4 py-3'
+                        ? 'bg-stone-900 text-white rounded-xl px-4 py-3 max-w-[70%] md:max-w-[50%] self-end'
                         : msg.from === 'system'
-                        ? 'bg-blue-50 text-blue-800 rounded-2xl px-4 py-3 italic'
-                        : 'bg-gray-100 text-gray-800 rounded-2xl rounded-bl-md px-4 py-3'
+                        ? 'bg-blue-50 text-blue-800 rounded-xl px-4 py-3 italic max-w-[70%] md:max-w-[50%] self-start'
+                        : 'bg-gray-100 text-gray-800 rounded-xl rounded-bl-md px-4 py-3 w-full'
                     }`}
+                    style={msg.from === 'user' ? { alignSelf: 'flex-end' } : msg.from === 'system' ? { alignSelf: 'flex-start' } : {}}
                   >
                     {msg.type === 'image' && (
                       <img
