@@ -267,6 +267,13 @@ function App() {
   function cancelGeneration() {
     console.log('Cancel generation called');
 
+    // Abort the ongoing request
+    if (abortController) {
+      console.log('Aborting request...');
+      abortController.abort();
+      setAbortController(null);
+    }
+
     // Stop loading
     setLoading(false);
     setPredictionId(null);
