@@ -292,13 +292,7 @@ function App() {
     const remainingMessages = messages.slice(0, messageIndex);
     setMessages(remainingMessages);
 
-    // Find the last remaining image to set as current
-    for (let i = remainingMessages.length - 1; i >= 0; i--) {
-      if (remainingMessages[i].type === 'image') {
-        setCurrentImageFromUrl(remainingMessages[i].image);
-        break;
-      }
-    }
+    // No need to set current image - getLastImageBlob will find it automatically
   }
 
   // Set current image from URL
