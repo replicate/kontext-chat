@@ -392,21 +392,19 @@ function App() {
   }, [showUpload]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#e04f0c] to-[#f47020]">
-
-
+    <div className="min-h-screen bg-gradient-to-br from-[#e04f0c] to-[#f47020]">
       {/* Main Content */}
-      <main className="flex-1 flex items-center justify-center md:p-8" style={{ marginTop: 0 }}>
+      <div className="min-h-screen flex flex-col md:flex md:items-center md:justify-center md:p-8">
         {showUpload ? (
           /* Upload Section */
-          <div className="w-full md:max-w-4xl bg-white md:rounded-lg shadow-md flex flex-col mb-8">
+          <div className="w-full md:max-w-4xl bg-white md:rounded-2xl md:shadow-md flex flex-col min-h-screen md:min-h-0 md:mb-8">
             {/* Logo */}
-            <div className="p-4 border-b bg-white">
+            <div className="p-4 md:border-b bg-white md:rounded-t-2xl">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
             </div>
 
             {/* Upload Area */}
-            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto">
+            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto md:rounded-b-2xl">
               <div className="flex flex-col justify-center" style={{ minHeight: '120px' }}>
                 <div
                   className={`border-2 border-dashed rounded-2xl p-6 md:p-12 text-center cursor-pointer transition-all duration-300 mb-6 ${
@@ -458,9 +456,9 @@ function App() {
           </div>
         ) : (
           /* Chat Section */
-          <div className="w-full md:max-w-4xl bg-white md:rounded-lg md:shadow-md overflow-hidden flex flex-col h-screen md:h-[90vh]">
+          <div className="w-full md:max-w-4xl bg-white md:rounded-2xl md:shadow-md overflow-hidden flex flex-col h-screen md:h-[calc(90vh-4rem)]">
             {/* Chat Header with Logo */}
-            <div className="py-3 px-4 md:border-b bg-white relative flex items-center">
+            <div className="py-3 px-4 md:border-b bg-white relative flex items-center md:rounded-t-2xl">
               <button
                 onClick={resetApp}
                 className="absolute left-4 w-8 h-8 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105"
@@ -580,7 +578,7 @@ function App() {
             </div>
           </div>
         )}
-      </main>
+      </div>
 
       {/* Footer - Only show in upload mode or on desktop in chat mode */}
       {(showUpload || !showUpload && window.innerWidth >= 768) && (
