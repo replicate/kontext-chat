@@ -161,13 +161,14 @@ function App() {
 
   // Reset to upload mode
   function resetApp() {
-    if (predictionId) {
-      cancelGeneration();
+    if (abortController) {
+      abortController.abort();
     }
     setShowUpload(true);
     setMessages([]);
     setInput('');
     setPredictionId(null);
+    setAbortController(null);
     setLoading(false);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
