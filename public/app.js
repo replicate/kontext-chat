@@ -399,7 +399,7 @@ function App() {
             </div>
 
             {/* Starter Images Grid */}
-            <div className="px-4 pt-4 pb-2 overflow-y-auto" style={{ maxHeight: '40vh' }}>
+            <div className="px-4 pt-4 pb-2 overflow-y-auto" style={{ maxHeight: '56vh' }}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                 {starterImages.map((starter, idx) => (
                   <button
@@ -422,21 +422,22 @@ function App() {
             </div>
 
             {/* Upload Area */}
-            <div className="flex-1 flex flex-col justify-center p-4 md:p-12 overflow-y-auto" style={{ minHeight: 0 }}>
+            <div className="flex-1 flex flex-col justify-center p-2 md:p-4 overflow-y-auto" style={{ minHeight: 0, maxHeight: '32vh' }}>
               <div
-                className={`border-3 border-dashed rounded-3xl p-12 md:p-16 text-center cursor-pointer transition-all duration-300 mb-8 ${
+                className={`border-2 border-dashed rounded-2xl p-4 md:p-6 text-center cursor-pointer transition-all duration-300 mb-4 ${
                   dragActive
                     ? 'border-green-400 bg-green-50 text-green-700'
                     : 'border-gray-300 bg-gray-50 hover:border-orange-400 hover:bg-orange-50 text-gray-700 hover:text-orange-700'
                 }`}
+                style={{ minHeight: '120px', maxWidth: '420px', margin: '0 auto' }}
                 onClick={() => fileInputRef.current?.click()}
               >
                 <div className="upload-content">
-                  <svg className="w-12 h-12 mx-auto mb-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-7 h-7 mx-auto mb-2 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                   </svg>
-                  <h3 className="text-xl mb-3 font-semibold">Upload an image to get started</h3>
-                  <p className="text-lg opacity-80">Drag and drop an image here, or click to browse</p>
+                  <h3 className="text-base mb-1 font-semibold">Upload an image</h3>
+                  <p className="text-sm opacity-80">Drag & drop or click to browse</p>
                   <input
                     type="file"
                     ref={fileInputRef}
@@ -446,8 +447,6 @@ function App() {
                   />
                 </div>
               </div>
-
-
             </div>
           </div>
         ) : (
