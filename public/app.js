@@ -211,13 +211,16 @@ function App() {
         throw new Error(`HTTP ${res.status}: ${errorText}`);
       }
 
-      const imageUrl = await res.text();
-      console.log('Generated image URL:', imageUrl);
+      // The response is the actual image data, not a URL
+      const imageBlob = await res.blob();
+      console.log('Generated image blob size:', imageBlob.size);
+
+      // Create a local URL for the image
+      const imageUrl = URL.createObjectURL(imageBlob);
+      console.log('Created local image URL:', imageUrl);
 
       // Update current image
-      const response = await fetch(imageUrl);
-      const blob = await response.blob();
-      setCurrentImageBlob(blob);
+      setCurrentImageBlob(imageBlob);
 
       // Replace loading with image
       setMessages(prev => prev.map(msg =>
