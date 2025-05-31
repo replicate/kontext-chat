@@ -191,7 +191,7 @@ function App() {
     try {
       // Convert blob to data URL for the API
       console.log('Converting blob to data URL...');
-      const imageDataUrl = await blobToDataUrl(currentImageBlob);
+      const imageDataUrl = await blobToDataUrl(lastImageBlob);
       console.log('Image data URL length:', imageDataUrl.length);
 
       console.log('Sending request to /generate-image...');
