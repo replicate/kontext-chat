@@ -105,13 +105,35 @@ function App() {
       // Add initial messages
       setMessages([
         { type: 'image', image: url, imageBlob: scaledBlob, from: 'assistant', id: Date.now() },
-        { type: 'text', text: 'Image uploaded! Tell me how you\'d like to edit it.', from: 'system', id: Date.now() + 1 }
+        { type: 'text', text: 'Image uploaded! How would you like to edit it?', from: 'system', id: Date.now() + 1 }
       ]);
 
       // Switch to chat mode
       setShowUpload(false);
     } catch (error) {
       alert('Failed to process image: ' + error.message);
+    }
+  }
+
+  // Handle click on starter image
+  async function handleStarterImageClick(starter) {
+    // Fetch the image as a blob so it behaves like uploaded images
+    try {
+      setLoading(true);
+      const res = await fetch(starter.imageUrl);
+      const blob = await res.blob();
+      // Add image as first message
+      setMessages([
+        { type: 'image', image: starter.imageUrl, imageBlob: blob, from: 'assistant', id: Date.now() },
+        { type: 'text', text: "Image loaded! Tell me how you'd like to edit it.", from: 'system', id: Date.now() + 1 }
+      ]);
+      setShowUpload(false);
+      setInput(starter.suggestedPrompt || '');
+      setStarterUsed(true);
+    } catch (err) {
+      alert('Failed to load starter image.');
+    } finally {
+      setLoading(false);
     }
   }
 
