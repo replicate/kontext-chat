@@ -460,17 +460,23 @@ function App() {
           /* Chat Section */
           <div className="w-full md:max-w-4xl bg-white md:rounded-lg md:shadow-md overflow-hidden flex flex-col h-screen md:h-[90vh]">
             {/* Chat Header with Logo */}
-            <div className="p-4 md:border-b bg-white relative">
-              <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
+            <div className="py-3 px-4 md:border-b bg-white relative flex items-center">
               <button
                 onClick={resetApp}
-                className="absolute bottom-4 right-4 w-8 h-8 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105"
-                title="Start over with new image"
+                className="absolute left-4 w-8 h-8 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105"
+                title="Back to upload"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg>
               </button>
+              <img 
+                src="/kontext-chat-rainbow.png" 
+                className="w-1/3 mx-auto cursor-pointer hover:opacity-90 transition-opacity" 
+                alt="Kontext Chat" 
+                onClick={resetApp}
+                title="Back to upload"
+              />
             </div>
 
             {/* Chat Messages */}
