@@ -429,9 +429,9 @@ function App() {
                       />
                     )}
                     {msg.type === 'loading' && (
-                      <div className="flex items-center gap-3 py-4">
-                        <div className="w-6 h-6 border-2 border-gray-300 border-t-orange-500 rounded-full animate-spin"></div>
-                        <span>Generating image...</span>
+                      <div className="flex flex-col items-center gap-4 py-8 px-12">
+                        <div className="w-16 h-16 border-4 border-gray-300 border-t-orange-500 rounded-full animate-spin"></div>
+                        <span className="text-gray-600">Generating image...</span>
                       </div>
                     )}
                     {msg.text && <div className="text-sm md:text-base">{msg.text}</div>}
