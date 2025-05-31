@@ -97,6 +97,16 @@ function App() {
     }
   }
 
+  // Helper function to convert blob to data URL
+  function blobToDataUrl(blob) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
+
   // Scale image function
   async function scaleImageTo1Megapixel(file) {
     return new Promise((resolve, reject) => {
