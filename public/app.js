@@ -295,16 +295,7 @@ function App() {
     // No need to set current image - getLastImageBlob will find it automatically
   }
 
-  // Set current image from URL
-  async function setCurrentImageFromUrl(imageUrl) {
-    try {
-      const response = await fetch(imageUrl);
-      const blob = await response.blob();
-      setCurrentImageBlob(blob);
-    } catch (error) {
-      console.error('Error setting current image from URL:', error);
-    }
-  }
+  // No longer needed - state is derived from chat messages
 
   // Handle image click for full screen
   function handleImageClick(imageUrl) {
