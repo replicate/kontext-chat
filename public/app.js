@@ -252,7 +252,18 @@ function App() {
   function cancelGeneration() {
     setLoading(false);
     setPredictionId(null);
-    setMessages(prev => prev.filter(msg => msg.type !== 'loading'));
+
+    // Find the most recent user message to restore to input
+    const lastUserMessage = messages.slice().reverse().find(msg => msg.from === 'user' && msg.type === 'text');
+    if (lastUserMessage) {
+      setInput(lastUserMessage.text);
+    }
+
+    // Remove loading message and the most recent user message
+    setMessages(prev => prev.filter(msg =>
+      msg.type !== 'loading' &&
+      !(msg.from === 'user' && msg.type === 'text' && msg.id === lastUserMessage?.id)
+    ));
   }
 
   // Delete message and all subsequent messages
