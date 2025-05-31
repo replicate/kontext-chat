@@ -461,7 +461,7 @@ function App() {
                     <textarea
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
-                      placeholder="Describe how you want to edit the image..."
+                      placeholder="Describe your edit..."
                       className="w-full bg-transparent border-none outline-none resize-none text-base"
                       rows="1"
                       style={{ minHeight: '24px', maxHeight: '120px' }}
