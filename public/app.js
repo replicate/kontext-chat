@@ -413,7 +413,7 @@ function App() {
                   <div
                     className={`relative max-w-sm md:max-w-md ${
                       msg.from === 'user'
-                        ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-2xl rounded-br-md px-4 py-3'
+                        ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-3xl px-4 py-3'
                         : msg.from === 'system'
                         ? 'bg-blue-50 text-blue-800 rounded-2xl px-4 py-3 italic'
                         : 'bg-gray-100 text-gray-800 rounded-2xl rounded-bl-md px-4 py-3'
