@@ -322,7 +322,7 @@ function App() {
             </div>
 
             {/* Upload Area */}
-            <div className="p-8 md:p-12">
+            <div className="flex-1 flex items-center justify-center p-8 md:p-12">
               <div
                 className={`border-3 border-dashed rounded-3xl p-12 md:p-16 text-center cursor-pointer transition-all duration-300 ${
                   dragActive
