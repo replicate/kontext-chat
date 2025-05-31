@@ -281,6 +281,9 @@ function App() {
     <div className="min-h-screen flex flex-col">
       {/* Header */}
       <header className="text-center text-white pt-8 pb-4 px-4">
+        <a href="https://github.com/replicate/kontext-chat-cloudflare">
+          <img src="/kontext-chat-rainbow.png" className="w-1/2 md:w-1/3 mx-auto mb-4" alt="Kontext Chat" />
+        </a>
         <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'Georgia, serif' }}>
           FLUX.1 Kontext chat
         </h1>
