@@ -575,28 +575,15 @@ function App() {
       {/* Footer */}
       <div className="w-full max-w-4xl mx-auto px-4 mb-8">
         <footer className="text-center">
-          <p className={`text-orange-200 text-base md:text-lg leading-relaxed mb-8 ${showUpload ? '' : 'hidden md:block'}`}>
-            Kontext Chat is powered by{' '}
+          <p className={`text-orange-200 text-base md:text-lg leading-relaxed px-12 mb-8 ${showUpload ? '' : 'hidden md:block'}`}>
+            Powered by{' '}
             <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-orange-100 hover:text-white">
-              Flux Kontext Pro
-            </a>
-            , a new image model from{' '}
-            <a href="https://black-forest-labs.com/" className="underline text-orange-100 hover:text-white">
-              Black Forest Labs
-            </a>
-            , running on{' '}
-            <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-orange-100 hover:text-white">
-              Replicate
-            </a>
-            . The app is built with Hono and React, running on{' '}
-            <a href="https://workers.dev/" className="underline text-orange-100 hover:text-white">
-              Cloudflare Workers
-            </a>
-            . Check out the{' '}
+            FLUX.1 Kontext Pro
+            </a> on Replicate. Learn how to{' '}
             <a href="https://github.com/replicate/kontext-chat-cloudflare" className="underline text-orange-100 hover:text-white">
-              source code
+              make this on GitHub.
             </a>
-            {' '}on GitHub.
+
           </p>
 
           <nav className="flex justify-center items-center space-x-4">
