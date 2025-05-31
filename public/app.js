@@ -19,6 +19,11 @@ function App() {
       prompt: starterImages[randomIndex].suggestedPrompt,
       from: 'bot',
     },
+    {
+      type: 'text',
+      text: 'what should we change about this image?',
+      from: 'bot',
+    },
   ]);
   const [input, setInput] = React.useState(starterImages[randomIndex].suggestedPrompt);
   const [loading, setLoading] = React.useState(false);
@@ -118,7 +123,7 @@ function App() {
                     ? 'w-full'
                     : 'max-w-xs') + ' ' +
                   (msg.from === 'user'
-                    ? 'bg-blue-500 text-white rounded-br-none'
+                    ? 'bg-stone-900 text-white rounded-br-none'
                     : 'bg-gray-200 text-gray-900 rounded-bl-none')
                 }
               >
@@ -145,7 +150,7 @@ function App() {
         >
           <input
             type="text"
-            className="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-stone-400"
             value={input}
             onChange={e => setInput(e.target.value)}
             placeholder="Type your message..."
@@ -153,7 +158,7 @@ function App() {
           />
           <button
             type="submit"
-            className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            className="bg-stone-900 text-white px-4 py-2 rounded-lg hover:bg-stone-800 transition"
             disabled={loading}
           >
             Send
@@ -165,8 +170,8 @@ function App() {
       <div className="w-full max-w-3xl mx-auto rounded-b-lg mb-8">
         <footer className="">
           <div className="">
-            <p className="text-center py-6 px-8 text-amber-700 text-2xl mt-12 leading-relaxed">
-              Kontext Chat is powered by <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-amber-800">Flux Kontext Pro</a>, a powerful new image editing model from <a href="https://black-forest-labs.com/" className="underline text-amber-800">Black Forest Labs</a>, running on <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-amber-800">Replicate</a>. The app is built with Hono and React, running on <a href="https://workers.dev/" className="underline text-amber-800">Cloudflare Workers</a>. Check out the <a href="https://github.com/replicate/kontext-chat-cloudflare" className="underline text-amber-800">source code</a> on GitHub.
+            <p className="text-center py-6 px-8 text-orange-200 text-2xl mt-12 leading-relaxed">
+              Kontext Chat is powered by <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-orange-100">Flux Kontext Pro</a>, a new image model from <a href="https://black-forest-labs.com/" className="underline text-orange-100">Black Forest Labs</a>, running on <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-orange-100">Replicate</a>. The app is built with Hono and React, running on <a href="https://workers.dev/" className="underline text-orange-100">Cloudflare Workers</a>. Check out the <a href="https://github.com/replicate/kontext-chat-cloudflare" className="underline text-orange-100">source code</a> on GitHub.
             </p>
 
             <nav className="text-center mt-16">
