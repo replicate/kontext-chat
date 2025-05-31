@@ -344,7 +344,7 @@ function App() {
 
 
       {/* Main Content */}
-      <main className="flex-1 flex items-center justify-center px-4 pb-8" style={{ marginTop: '3rem' }}>
+      <main className="flex-1 flex items-center justify-center px-8 pb-8" style={{ marginTop: '3rem' }}>
         {showUpload ? (
           /* Upload Section */
           <div className="w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden flex flex-col" style={{ height: '90vh' }}>
@@ -415,8 +415,10 @@ function App() {
                       msg.from === 'user'
                         ? 'bg-stone-900 text-white rounded-xl px-4 py-3 max-w-[70%] md:max-w-[50%] self-end'
                         : msg.from === 'system'
-                        ? 'bg-blue-50 text-blue-800 rounded-xl px-4 py-3 italic max-w-[70%] md:max-w-[50%] self-start'
-                        : 'bg-gray-100 text-gray-800 rounded-xl rounded-bl-md px-4 py-3 w-full'
+                        ? 'bg-stone-100 text-stone-800 rounded-xl px-4 py-3 italic max-w-[70%] md:max-w-[50%] self-start'
+
+                        // image message container style
+                        : 'bg-stone-100 text-stone-800 rounded-xl rounded-bl-md w-full'
                     }`}
                     style={msg.from === 'user' ? { alignSelf: 'flex-end' } : msg.from === 'system' ? { alignSelf: 'flex-start' } : {}}
                   >
