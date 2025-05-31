@@ -311,11 +311,27 @@ function App() {
         {showUpload ? (
           /* Upload Section */
           <div className="w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-            {/* Logo */}
-            <div className="p-4 border-b bg-white">
+            {/* Logo and Title */}
+            <div className="p-6 border-b bg-white text-center">
               <a href="https://github.com/replicate/kontext-chat-cloudflare">
-                <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
+                <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto mb-4" alt="Kontext Chat" />
               </a>
+              <h1 className="text-3xl md:text-4xl font-bold mb-3 text-gray-800" style={{ fontFamily: 'Georgia, serif' }}>
+                FLUX.1 Kontext chat
+              </h1>
+              <p className="text-lg text-gray-600 mb-2 leading-relaxed">
+                Chat with images like you chat with text!<br />
+                Upload an image and describe how you want to edit it.
+              </p>
+              <p className="text-sm text-gray-500">
+                <a href="https://replicate.com/blog/flux-kontext" target="_blank" className="text-orange-600 hover:text-orange-700 underline">
+                  Learn more about FLUX.1 Kontext
+                </a>
+                {' '} • {' '}
+                <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" target="_blank" className="text-orange-600 hover:text-orange-700 underline">
+                  API on Replicate
+                </a>
+              </p>
             </div>
 
             {/* Upload Area */}
