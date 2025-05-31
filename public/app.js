@@ -411,7 +411,7 @@ function App() {
                   className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`relative max-w-sm md:max-w-md ${
+                    className={`relative w-full ${
                       msg.from === 'user'
                         ? 'bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-3xl px-4 py-3'
                         : msg.from === 'system'
@@ -423,7 +423,7 @@ function App() {
                       <img
                         src={msg.image}
                         alt="Generated image"
-                        className="max-w-xs rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                        className="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity object-fill"
                         onClick={() => handleImageClick(msg.image)}
                         onLoad={scrollToBottom}
                       />
