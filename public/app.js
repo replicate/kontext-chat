@@ -243,16 +243,23 @@ function App() {
       ));
 
     } catch (err) {
-      setMessages(prev => prev.filter(msg => msg.type !== 'loading'));
-      setMessages(prev => [...prev, {
-        type: 'text',
-        text: 'Sorry, there was an error generating the image: ' + err.message,
-        from: 'assistant',
-        id: Date.now()
-      }]);
+      // Don't show error if request was aborted (cancelled)
+      if (err.name !== 'AbortError') {
+        setMessages(prev => prev.filter(msg => msg.type !== 'loading'));
+        setMessages(prev => [...prev, {
+          type: 'text',
+          text: 'Sorry, there was an error generating the image: ' + err.message,
+          from: 'assistant',
+          id: Date.now()
+        }]);
+      } else {
+        console.log('Request was cancelled');
+        setMessages(prev => prev.filter(msg => msg.type !== 'loading'));
+      }
     } finally {
       setLoading(false);
       setPredictionId(null);
+      setAbortController(null);
     }
   };
 
