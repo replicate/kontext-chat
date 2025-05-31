@@ -105,7 +105,7 @@ function App() {
       // Add initial messages
       setMessages([
         { type: 'image', image: url, imageBlob: scaledBlob, from: 'assistant', id: Date.now() },
-        { type: 'text', text: 'Image uploaded! Tell me how you\'d like to edit it.', from: 'system', id: Date.now() + 1 }
+        { type: 'text', text: 'Image uploaded! How would you like to edit it?', from: 'system', id: Date.now() + 1 }
       ]);
 
       // Switch to chat mode
@@ -399,8 +399,8 @@ function App() {
             </div>
 
             {/* Starter Images Grid */}
-            <div className="px-8 pt-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="px-4 pt-4 pb-2 overflow-y-auto" style={{ maxHeight: '40vh' }}>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                 {starterImages.map((starter, idx) => (
                   <button
                     key={idx}
@@ -418,11 +418,11 @@ function App() {
                   </button>
                 ))}
               </div>
-              <div className="text-center text-gray-500 text-sm mb-4">Or upload your own image below</div>
+              <div className="text-center text-gray-500 text-sm mb-2">Choose a starting image, or upload your own below:</div>
             </div>
 
             {/* Upload Area */}
-            <div className="flex-1 flex flex-col justify-center p-8 md:p-12">
+            <div className="flex-1 flex flex-col justify-center p-4 md:p-12 overflow-y-auto" style={{ minHeight: 0 }}>
               <div
                 className={`border-3 border-dashed rounded-3xl p-12 md:p-16 text-center cursor-pointer transition-all duration-300 mb-8 ${
                   dragActive
@@ -432,10 +432,10 @@ function App() {
                 onClick={() => fileInputRef.current?.click()}
               >
                 <div className="upload-content">
-                  <svg className="w-16 h-16 mx-auto mb-6 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-12 h-12 mx-auto mb-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                   </svg>
-                  <h3 className="text-2xl mb-3 font-semibold">Upload an image to get started</h3>
+                  <h3 className="text-xl mb-3 font-semibold">Upload an image to get started</h3>
                   <p className="text-lg opacity-80">Drag and drop an image here, or click to browse</p>
                   <input
                     type="file"
@@ -481,7 +481,7 @@ function App() {
                       msg.from === 'user'
                         ? 'bg-stone-900 text-white rounded-xl px-4 py-3 max-w-[70%] md:max-w-[50%] self-end'
                         : msg.from === 'system'
-                        ? 'bg-stone-100 text-stone-800 rounded-xl px-4 py-3 italic max-w-[70%] md:max-w-[50%] self-start'
+                        ? 'bg-stone-100 text-stone-800 rounded-xl px-4 py-3 max-w-[70%] md:max-w-[50%] self-start'
 
                         // image message container style
                         : 'bg-stone-100 text-stone-800 rounded-xl rounded-bl-md w-full'
