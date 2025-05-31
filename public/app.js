@@ -388,7 +388,7 @@ function App() {
 
 
       {/* Main Content */}
-      <main className="flex-1 flex items-center justify-center px-4 pb-8" style={{ marginTop: '3rem' }}>
+      <main className="flex-1 flex items-center justify-center px-8 pb-8" style={{ marginTop: '3rem' }}>
         {showUpload ? (
           /* Upload Section */
           <div className="w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden flex flex-col" style={{ height: '90vh' }}>
