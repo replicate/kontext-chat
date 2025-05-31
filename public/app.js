@@ -103,6 +103,16 @@ function App() {
     });
   }
 
+  // Get the most recent image from the chat
+  function getLastImageBlob() {
+    for (let i = messages.length - 1; i >= 0; i--) {
+      if (messages[i].type === 'image' && messages[i].imageBlob) {
+        return messages[i].imageBlob;
+      }
+    }
+    return null;
+  }
+
   // Scale image function
   async function scaleImageTo1Megapixel(file) {
     return new Promise((resolve, reject) => {
