@@ -1,3 +1,22 @@
+const starterImages = [
+  {
+    imageUrl: 'https://replicate.delivery/pbxt/N55l5TWGh8mSlNzW8usReoaNhGbFwvLeZR3TX1NL4pd2Wtfv/replicate-prediction-f2d25rg6gnrma0cq257vdw2n4c.png',
+    suggestedPrompt: 'make it into a 90s cartoon',
+  },
+  {
+    imageUrl: 'https://replicate.delivery/pbxt/N5cepICxyaagdvULl0phi7ImdxuFz05TR2l623zqxhNR9q5Y/van-gogh.jpeg',
+    suggestedPrompt: 'Using this style, a panda astronaut riding a unicorn',
+  },
+  {
+    imageUrl: 'https://replicate.delivery/xezq/OKWfR6jlQwzekkSsfQOppX55O3vaNv6xZ4qY6RfHjwQHOwDTB/tmp9p3v3brc.png',
+    suggestedPrompt: 'remove the text from the sweatshirt',
+  },
+  {
+    imageUrl: 'https://replicate.delivery/pbxt/N5trWTJCJQbJVWz5nhLEscS1w16r1hGl5zuWceJhVSnWZfGu/mona-lisa-1024.jpg',
+    suggestedPrompt: 'close her eyes',
+  }
+]
+
 function App() {
   // State for upload vs chat mode
   const [showUpload, setShowUpload] = React.useState(true);
@@ -7,6 +26,8 @@ function App() {
   // No need for separate image state - just use what's in the chat!
   const [predictionId, setPredictionId] = React.useState(null);
   const [abortController, setAbortController] = React.useState(null);
+  // New: track if a starter image was used (for future logic if needed)
+  const [starterUsed, setStarterUsed] = React.useState(false);
 
   // Ref for chat container and file input
   const chatContainerRef = React.useRef(null);
@@ -339,6 +360,28 @@ function App() {
     }
   }, [showUpload]);
 
+  // Handle click on starter image
+  async function handleStarterImageClick(starter) {
+    // Fetch the image as a blob so it behaves like uploaded images
+    try {
+      setLoading(true);
+      const res = await fetch(starter.imageUrl);
+      const blob = await res.blob();
+      // Add image as first message
+      setMessages([
+        { type: 'image', image: starter.imageUrl, imageBlob: blob, from: 'assistant', id: Date.now() },
+        { type: 'text', text: "Image loaded! Tell me how you'd like to edit it.", from: 'system', id: Date.now() + 1 }
+      ]);
+      setShowUpload(false);
+      setInput(starter.suggestedPrompt || '');
+      setStarterUsed(true);
+    } catch (err) {
+      alert('Failed to load starter image.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
 
@@ -353,6 +396,29 @@ function App() {
               <a href="https://github.com/replicate/kontext-chat-cloudflare">
                 <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
               </a>
+            </div>
+
+            {/* Starter Images Grid */}
+            <div className="px-8 pt-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                {starterImages.map((starter, idx) => (
+                  <button
+                    key={idx}
+                    className="aspect-square w-full rounded-xl overflow-hidden border-2 border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-all shadow-sm bg-gray-50 group"
+                    style={{ minHeight: 0 }}
+                    onClick={() => handleStarterImageClick(starter)}
+                    disabled={loading}
+                    title={starter.suggestedPrompt}
+                  >
+                    <img
+                      src={starter.imageUrl}
+                      alt={starter.suggestedPrompt}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200"
+                    />
+                  </button>
+                ))}
+              </div>
+              <div className="text-center text-gray-500 text-sm mb-4">Or upload your own image below</div>
             </div>
 
             {/* Upload Area */}
