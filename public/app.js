@@ -258,6 +258,12 @@ function App() {
     setLoading(false);
     setPredictionId(null);
 
+    // Reset to original image (not the last generated one)
+    if (originalImageBlob) {
+      console.log('Resetting to original image');
+      setCurrentImageBlob(originalImageBlob);
+    }
+
     // Find the most recent user message to restore to input
     const currentMessages = [...messages]; // Create a copy to avoid stale closure
     const lastUserMessage = currentMessages.slice().reverse().find(msg => msg.from === 'user' && msg.type === 'text');
