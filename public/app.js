@@ -176,7 +176,8 @@ function App() {
   // Handle sending a message
   const handleSend = async (e) => {
     e.preventDefault();
-    if (!input.trim() || loading || !currentImageBlob) return;
+    const lastImageBlob = getLastImageBlob();
+    if (!input.trim() || loading || !lastImageBlob) return;
 
     const userMsg = { type: 'text', text: input, from: 'user', id: Date.now() };
     setMessages(prev => [...prev, userMsg]);
