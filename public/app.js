@@ -267,13 +267,21 @@ function App() {
         throw new Error(`HTTP ${res.status}: ${errorText}`);
       }
 
-      // The response is the actual image data, not a URL
-      const imageBlob = await res.blob();
-      console.log('Generated image blob size:', imageBlob.size);
+      // The response is now JSON with the Cloudflare Images URL
+      const result = await res.json();
+      console.log('Response result:', result);
 
-      // Create a local URL for the image
-      const imageUrl = URL.createObjectURL(imageBlob);
-      console.log('Created local image URL:', imageUrl);
+      if (result.error) {
+        throw new Error(result.error);
+      }
+
+      const imageUrl = result.imageUrl;
+      console.log('Cloudflare Images URL:', imageUrl);
+
+      // Fetch the image to create a blob for local storage/UI purposes
+      const imageResponse = await fetch(imageUrl);
+      const imageBlob = await imageResponse.blob();
+      console.log('Image blob size:', imageBlob.size);
 
       // Replace loading with image (store blob in message)
       setMessages(prev => prev.map(msg =>
