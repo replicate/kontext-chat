@@ -304,29 +304,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header - only show when uploading */}
-      {showUpload && (
-        <header className="text-center text-white pt-8 pb-4 px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'Georgia, serif' }}>
-            FLUX.1 Kontext chat
-          </h1>
-          <div>
-            <p className="text-lg md:text-xl mb-3 opacity-90 leading-relaxed">
-              Chat with images like you chat with text!<br />
-              Upload an image and describe how you want to edit it.<br />
-              <a href="https://replicate.com/blog/flux-kontext" target="_blank" className="text-yellow-300 hover:text-yellow-200 underline">
-                Learn more about FLUX.1 Kontext
-              </a>
-            </p>
-            <p className="text-base opacity-80">
-              Build something like this yourself! Run FLUX.1 Kontext [pro] with an{' '}
-              <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" target="_blank" className="text-yellow-300 hover:text-yellow-200 underline">
-                API on Replicate
-              </a>
-            </p>
-          </div>
-        </header>
-      )}
+
 
       {/* Main Content */}
       <main className="flex-1 flex items-center justify-center px-4 pb-8" style={{ marginTop: showUpload ? '0' : '3rem' }}>
