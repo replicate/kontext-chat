@@ -26,6 +26,8 @@ function App() {
   // No need for separate image state - just use what's in the chat!
   const [predictionId, setPredictionId] = React.useState(null);
   const [abortController, setAbortController] = React.useState(null);
+  // New: track if a starter image was used (for future logic if needed)
+  const [starterUsed, setStarterUsed] = React.useState(false);
 
   // Ref for chat container and file input
   const chatContainerRef = React.useRef(null);
