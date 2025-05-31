@@ -339,9 +339,12 @@ function App() {
 
   // No longer needed - state is derived from chat messages
 
+  // Lightbox state
+  const [lightboxImage, setLightboxImage] = React.useState(null);
+
   // Handle image click for full screen
   function handleImageClick(imageUrl) {
-    window.open(imageUrl, '_blank');
+    setLightboxImage(imageUrl);
   }
 
   // Attach drag events when in upload mode
@@ -385,6 +388,21 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col">
 
+      {/* Lightbox Overlay */}
+      {lightboxImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 cursor-zoom-out transition-all duration-200"
+          onClick={() => setLightboxImage(null)}
+        >
+          <img
+            src={lightboxImage}
+            alt="Full size"
+            className="max-w-full max-h-full rounded-xl shadow-2xl border-4 border-white"
+            style={{ boxShadow: '0 8px 40px 0 rgba(0,0,0,0.7)' }}
+            onClick={e => { e.stopPropagation(); setLightboxImage(null); }}
+          />
+        </div>
+      )}
 
       {/* Main Content */}
       <main className="flex-1 flex items-center justify-center px-8 pb-8" style={{ marginTop: '3rem' }}>
