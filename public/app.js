@@ -384,14 +384,14 @@ function App() {
   }, [showUpload]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#e04f0c] to-[#f47020]">
 
 
       {/* Main Content */}
-      <main className="flex-1 flex items-center justify-center px-8 pb-8" style={{ marginTop: '3rem' }}>
+      <main className="flex-1 flex items-center justify-center md:p-8" style={{ marginTop: 0 }}>
         {showUpload ? (
           /* Upload Section */
-          <div className="w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden flex flex-col" style={{ height: '90vh' }}>
+          <div className="w-full md:max-w-4xl bg-white md:rounded-lg shadow-md flex flex-col mb-8">
             {/* Logo */}
             <div className="p-4 border-b bg-white">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
@@ -450,9 +450,9 @@ function App() {
           </div>
         ) : (
           /* Chat Section */
-          <div className="w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden flex flex-col" style={{ height: '90vh' }}>
+          <div className="w-full md:max-w-4xl bg-white md:rounded-lg md:shadow-md overflow-hidden flex flex-col h-screen md:h-[90vh]">
             {/* Chat Header with Logo */}
-            <div className="p-4 border-b bg-white relative">
+            <div className="p-4 md:border-b bg-white relative">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
               <button
                 onClick={resetApp}
@@ -516,7 +516,7 @@ function App() {
             </div>
 
             {/* Input Area */}
-            <div className="border-t bg-white p-4">
+            <div className="bg-white md:border-t p-4">
               <form onSubmit={handleSend} className="flex items-end gap-3">
                 <div className="flex-1 relative">
                   <div className="bg-gray-50 rounded-3xl px-4 py-3 pr-12 border-2 border-transparent focus-within:border-orange-500 transition-colors">
@@ -568,56 +568,57 @@ function App() {
         )}
       </main>
 
-      {/* Footer */}
-      <div className="w-full max-w-4xl mx-auto px-4 mb-8">
-        <footer className="text-center">
-          <p className={`text-orange-200 text-base md:text-lg leading-relaxed px-12 mb-8 ${showUpload ? '' : 'hidden md:block'}`}>
-            Powered by{' '}
-            <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-orange-100 hover:text-white">
-            FLUX.1 Kontext Pro
-            </a> on Replicate. Learn how to{' '}
-            <a href="https://github.com/replicate/kontext-chat-cloudflare" className="underline text-orange-100 hover:text-white">
-              make this on GitHub.
-            </a>
+      {/* Footer - Only show in upload mode or on desktop in chat mode */}
+      {(showUpload || !showUpload && window.innerWidth >= 768) && (
+        <div className="w-full max-w-4xl mx-auto px-4 mb-8">
+          <footer className="text-center">
+            <p className="text-orange-200 text-base md:text-lg leading-relaxed px-12 mb-8">
+              Powered by{' '}
+              <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-orange-100 hover:text-white">
+                FLUX.1 Kontext Pro
+              </a> on Replicate. Learn how to{' '}
+              <a href="https://github.com/replicate/kontext-chat-cloudflare" className="underline text-orange-100 hover:text-white">
+                make this on GitHub.
+              </a>
+            </p>
 
-          </p>
+            <nav className="flex justify-center items-center space-x-4">
+              <a
+                className="inline-block w-12 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
+                href="https://replicate.com/black-forest-labs?utm_source=project&utm_campaign=kontext-chat-cloudflare"
+              >
+                <img
+                  src="/logomarks/bfl.svg"
+                  alt="Black Forest Labs"
+                  className="w-full h-full p-2 hover:p-1 transition-all duration-200"
+                />
+              </a>
 
-          <nav className="flex justify-center items-center space-x-4">
-            <a
-              className="inline-block w-12 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
-              href="https://replicate.com/black-forest-labs?utm_source=project&utm_campaign=kontext-chat-cloudflare"
-            >
-              <img
-                src="/logomarks/bfl.svg"
-                alt="Black Forest Labs"
-                className="w-full h-full p-2 hover:p-1 transition-all duration-200"
-              />
-            </a>
+              <a
+                className="inline-block w-12 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
+                href="https://replicate.com?utm_source=project&utm_campaign=kontext-chat-cloudflare"
+              >
+                <img
+                  src="/logomarks/replicate.svg"
+                  alt="Replicate"
+                  className="w-full h-full p-2 hover:p-1 transition-all duration-200"
+                />
+              </a>
 
-            <a
-              className="inline-block w-12 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
-              href="https://replicate.com?utm_source=project&utm_campaign=kontext-chat-cloudflare"
-            >
-              <img
-                src="/logomarks/replicate.svg"
-                alt="Replicate"
-                className="w-full h-full p-2 hover:p-1 transition-all duration-200"
-              />
-            </a>
-
-            <a
-              className="inline-block w-12 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
-              href="https://github.com/replicate/kontext-chat-cloudflare"
-            >
-              <img
-                src="/logomarks/github.svg"
-                alt="GitHub"
-                className="w-full h-full p-2 hover:p-1 transition-all duration-200"
-              />
-            </a>
-          </nav>
-        </footer>
-      </div>
+              <a
+                className="inline-block w-12 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
+                href="https://github.com/replicate/kontext-chat-cloudflare"
+              >
+                <img
+                  src="/logomarks/github.svg"
+                  alt="GitHub"
+                  className="w-full h-full p-2 hover:p-1 transition-all duration-200"
+                />
+              </a>
+            </nav>
+          </footer>
+        </div>
+      )}
 
       {/* Drag and Drop Overlay */}
       {showUpload && dragActive && (
