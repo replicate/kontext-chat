@@ -526,7 +526,7 @@ function App() {
       {/* Footer */}
       <div className="w-full max-w-4xl mx-auto px-4 mb-8">
         <footer className="text-center">
-          <p className="text-orange-200 text-base md:text-lg leading-relaxed mb-8">
+          <p className={`text-orange-200 text-base md:text-lg leading-relaxed mb-8 ${showUpload ? '' : 'hidden md:block'}`}>
             Kontext Chat is powered by{' '}
             <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-orange-100 hover:text-white">
               Flux Kontext Pro
