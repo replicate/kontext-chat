@@ -4,9 +4,7 @@ function App() {
   const [messages, setMessages] = React.useState([]);
   const [input, setInput] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-  const [currentImageBlob, setCurrentImageBlob] = React.useState(null);
-  const [currentImageUrl, setCurrentImageUrl] = React.useState(null);
-  const [originalImageBlob, setOriginalImageBlob] = React.useState(null); // Store the original uploaded image
+  // No need for separate image state - just use what's in the chat!
   const [predictionId, setPredictionId] = React.useState(null);
 
   // Ref for chat container and file input
