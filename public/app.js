@@ -1,3 +1,22 @@
+const starterImages = [
+  {
+    imageUrl: 'https://replicate.delivery/pbxt/N55l5TWGh8mSlNzW8usReoaNhGbFwvLeZR3TX1NL4pd2Wtfv/replicate-prediction-f2d25rg6gnrma0cq257vdw2n4c.png',
+    suggestedPrompt: 'make it into a 90s cartoon',
+  },
+  {
+    imageUrl: 'https://replicate.delivery/pbxt/N5cepICxyaagdvULl0phi7ImdxuFz05TR2l623zqxhNR9q5Y/van-gogh.jpeg',
+    suggestedPrompt: 'Using this style, a panda astronaut riding a unicorn',
+  },
+  {
+    imageUrl: 'https://replicate.delivery/xezq/OKWfR6jlQwzekkSsfQOppX55O3vaNv6xZ4qY6RfHjwQHOwDTB/tmp9p3v3brc.png',
+    suggestedPrompt: 'remove the text from the sweatshirt',
+  },
+  {
+    imageUrl: 'https://replicate.delivery/pbxt/N5trWTJCJQbJVWz5nhLEscS1w16r1hGl5zuWceJhVSnWZfGu/mona-lisa-1024.jpg',
+    suggestedPrompt: 'close her eyes',
+  }
+]
+
 function App() {
   // State for upload vs chat mode
   const [showUpload, setShowUpload] = React.useState(true);
