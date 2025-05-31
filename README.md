@@ -2,7 +2,7 @@
 
 A chat app that generates images using Replicate and Cloudflare Workers.
 
-Kontext Chat is powered by [FLUX.1 Kontext Pro](https://replicate.com/black-forest-labs/flux-kontext-pro), a new image model from [Black Forest Labs](https://black-forest-labs.com/), running on [Replicate](https://replicate.com/black-forest-labs/flux-kontext-pro). The app is built with Hono and React, running on [Cloudflare Workers](https://workers.dev/).
+Kontext Chat is powered by [FLUX.1 Kontext Pro](https://replicate.com/black-forest-labs/flux-kontext-pro), a new image model from Black Forest Labs, running on [Replicate](https://replicate.com/black-forest-labs/flux-kontext-pro). The app is built with Hono and React and it deployed on [Cloudflare Workers](https://workers.dev/).
 
 See [kontext-chat.replicate.dev](https://kontext-chat.replicate.dev/) for a live demo.
 
