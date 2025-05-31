@@ -250,20 +250,34 @@ function App() {
 
   // Cancel generation
   function cancelGeneration() {
+    console.log('Cancel generation called');
+
+    // First stop loading to prevent any further processing
     setLoading(false);
     setPredictionId(null);
 
     // Find the most recent user message to restore to input
-    const lastUserMessage = messages.slice().reverse().find(msg => msg.from === 'user' && msg.type === 'text');
-    if (lastUserMessage) {
-      setInput(lastUserMessage.text);
-    }
+    const currentMessages = [...messages]; // Create a copy to avoid stale closure
+    const lastUserMessage = currentMessages.slice().reverse().find(msg => msg.from === 'user' && msg.type === 'text');
+    console.log('Last user message:', lastUserMessage);
 
     // Remove loading message and the most recent user message
-    setMessages(prev => prev.filter(msg =>
-      msg.type !== 'loading' &&
-      !(msg.from === 'user' && msg.type === 'text' && msg.id === lastUserMessage?.id)
-    ));
+    setMessages(prev => {
+      const filtered = prev.filter(msg =>
+        msg.type !== 'loading' &&
+        !(lastUserMessage && msg.from === 'user' && msg.type === 'text' && msg.id === lastUserMessage.id)
+      );
+      console.log('Messages after cancel:', filtered.length);
+      return filtered;
+    });
+
+    // Restore the cancelled message to input after state updates
+    if (lastUserMessage) {
+      setTimeout(() => {
+        console.log('Restoring text to input:', lastUserMessage.text);
+        setInput(lastUserMessage.text);
+      }, 50);
+    }
   }
 
   // Delete message and all subsequent messages
