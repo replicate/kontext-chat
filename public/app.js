@@ -240,9 +240,23 @@ function App() {
               Kontext Chat is powered by <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-orange-100">Flux Kontext Pro</a>, a new image model from <a href="https://black-forest-labs.com/" className="underline text-orange-100">Black Forest Labs</a>, running on <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-orange-100">Replicate</a>. The app is built with Hono and React, running on <a href="https://workers.dev/" className="underline text-orange-100">Cloudflare Workers</a>. Check out the <a href="https://github.com/replicate/kontext-chat-cloudflare" className="underline text-orange-100">source code</a> on GitHub.
             </p>
 
-            <nav className="text-center mt-16">
+            <nav className="text-center mt-16 mb-8">
+            <a
+                className="inline-block relative w-16 h-16 mx-2 opacity-60 hover:opacity-100 transition-all duration-200"
+                href="https://replicate.com/black-forest-labsutm_source=project&utm_campaign=kontext-chat-cloudflare"
+              >
+                <img
+                  src="/logomarks/bfl.svg"
+                  alt="Black Forest Labs"
+                  data-tooltip-id="black-forest-labs-tooltip"
+                  data-tooltip-content="Powered by Black Forest Labs"
+                  className="p-3 hover:p-1 transition-all duration-200 hover:saturate-100"
+                  style={{width: '100%', height: '100%', position: 'relative'}}
+                />
+              </a>
+
               <a
-                className="inline-block relative w-12 h-12 mx-2 opacity-60 hover:opacity-100 transition-all duration-200"
+                className="inline-block relative w-16 h-16 mx-2 opacity-60 hover:opacity-100 transition-all duration-200"
                 href="https://replicate.com?utm_source=project&utm_campaign=kontext-chat-cloudflare"
               >
                 <img
@@ -250,31 +264,31 @@ function App() {
                   alt="Replicate"
                   data-tooltip-id="replicate-tooltip"
                   data-tooltip-content="Built by Replicate"
-                  className="p-3 hover:p-1  transition-all duration-200  hover:saturate-100"
+                  className="p-3 hover:p-1 transition-all duration-200 hover:saturate-100"
                   style={{width: '100%', height: '100%', position: 'relative'}}
                 />
               </a>
 
-              <a className="inline-block relative w-12 h-12 mx-2 opacity-60 hover:opacity-100 transition-all duration-200" href="https://cloudflare.com">
+              <a className="inline-block relative w-20 h-16 mx-2 opacity-60 hover:opacity-100 transition-all duration-200" href="https://cloudflare.com">
                 <img
                   src="/logomarks/cloudflare.svg"
                   data-tooltip-id="cloudflare-tooltip"
                   data-tooltip-content="Hosted on Cloudflare"
                   alt="Cloudflare"
-                  className="p-3 hover:p-1  transition-all duration-200  hover:saturate-100"
+                  className="p-3 hover:p-1 transition-all duration-200 hover:saturate-100"
                   style={{width: '400%', height: '100%', position: 'relative'}}
                 />
               </a>
 
               <a
-                className="inline-block relative w-12 h-12 mx-2 opacity-60 hover:opacity-100 transition-all duration-200"
+                className="inline-block relative w-16 h-16 mx-2 opacity-60 hover:opacity-100 transition-all duration-200"
                 href="https://github.com/replicate/kontext-chat-cloudflare"
               >
                 <img
                   src="/logomarks/github.svg"
                   data-tooltip-id="github-tooltip"
                   data-tooltip-content="Fork it on GitHub"
-                  className="p-3 hover:p-1  transition-all duration-200  hover:saturate-100"
+                  className="p-3 hover:p-1 transition-all duration-200 hover:saturate-100"
                   style={{width: '100%', height: '100%', position: 'relative'}}
                 />
               </a>
