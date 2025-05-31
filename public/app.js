@@ -185,22 +185,34 @@ function App() {
 
     try {
       // Convert blob to data URL for the API
+      console.log('Converting blob to data URL...');
       const imageDataUrl = await blobToDataUrl(currentImageBlob);
+      console.log('Image data URL length:', imageDataUrl.length);
+
+      console.log('Sending request to /generate-image...');
+      const requestBody = {
+        prompt: input,
+        input_image: imageDataUrl
+      };
+      console.log('Request body size:', JSON.stringify(requestBody).length);
 
       const res = await fetch('/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          prompt: input,
-          input_image: imageDataUrl
-        })
+        body: JSON.stringify(requestBody)
       });
 
+      console.log('Response status:', res.status);
+      console.log('Response headers:', Object.fromEntries(res.headers.entries()));
+
       if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
+        const errorText = await res.text();
+        console.error('Error response body:', errorText);
+        throw new Error(`HTTP ${res.status}: ${errorText}`);
       }
 
       const imageUrl = await res.text();
+      console.log('Generated image URL:', imageUrl);
 
       // Update current image
       const response = await fetch(imageUrl);
