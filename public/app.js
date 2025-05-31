@@ -574,17 +574,6 @@ function App() {
             </a>
 
             <a
-              className="inline-block w-16 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
-              href="https://cloudflare.com"
-            >
-              <img
-                src="/logomarks/cloudflare.svg"
-                alt="Cloudflare"
-                className="w-full h-full p-2 hover:p-1 transition-all duration-200"
-              />
-            </a>
-
-            <a
               className="inline-block w-12 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
               href="https://github.com/replicate/kontext-chat-cloudflare"
             >
