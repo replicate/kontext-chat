@@ -381,24 +381,7 @@ function App() {
                 </div>
               </div>
 
-              {/* Description Text */}
-              <div className="text-center text-gray-600 max-w-2xl mx-auto">
-                <p className="text-lg mb-2 leading-relaxed">
-                  Chat with images like you chat with text!<br />
-                  Upload an image and describe how you want to edit it.
-                </p>
-                <p className="text-base mb-4">
-                  <a href="https://replicate.com/blog/flux-kontext" target="_blank" className="text-orange-600 hover:text-orange-700 underline">
-                    Learn more about FLUX.1 Kontext
-                  </a>
-                </p>
-                <p className="text-sm text-gray-500">
-                  Build something like this yourself! Run FLUX.1 Kontext [pro] with an{' '}
-                  <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" target="_blank" className="text-orange-600 hover:text-orange-700 underline">
-                    API on Replicate
-                  </a>
-                </p>
-              </div>
+
             </div>
           </div>
         ) : (
