@@ -6,6 +6,7 @@ function App() {
   const [loading, setLoading] = React.useState(false);
   const [currentImageBlob, setCurrentImageBlob] = React.useState(null);
   const [currentImageUrl, setCurrentImageUrl] = React.useState(null);
+  const [originalImageBlob, setOriginalImageBlob] = React.useState(null); // Store the original uploaded image
   const [predictionId, setPredictionId] = React.useState(null);
 
   // Ref for chat container and file input
