@@ -394,9 +394,7 @@ function App() {
           <div className="w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden flex flex-col" style={{ height: '90vh' }}>
             {/* Logo */}
             <div className="p-4 border-b bg-white">
-              <a href="https://github.com/replicate/kontext-chat-cloudflare">
-                <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
-              </a>
+              <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
             </div>
 
             {/* Upload Area */}
@@ -455,9 +453,7 @@ function App() {
           <div className="w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden flex flex-col" style={{ height: '90vh' }}>
             {/* Chat Header with Logo */}
             <div className="p-4 border-b bg-white relative">
-              <a href="https://github.com/replicate/kontext-chat-cloudflare">
-                <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
-              </a>
+              <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
               <button
                 onClick={resetApp}
                 className="absolute bottom-4 right-4 w-8 h-8 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105"
