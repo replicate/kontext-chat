@@ -320,26 +320,38 @@ function App() {
       <main className="flex-1 flex items-center justify-center px-4 pb-8" style={{ marginTop: showUpload ? '0' : '3rem' }}>
         {showUpload ? (
           /* Upload Section */
-          <div className="w-full max-w-2xl">
-            <div
-              className={`border-3 border-dashed rounded-3xl p-12 md:p-16 text-center bg-white bg-opacity-10 backdrop-blur-sm cursor-pointer transition-all duration-300 text-white ${
-                dragActive ? 'border-green-400 bg-green-400 bg-opacity-20' : 'border-white border-opacity-30 hover:border-opacity-60 hover:bg-opacity-15'
-              }`}
-              onClick={() => fileInputRef.current?.click()}
-            >
-              <div className="upload-content">
-                <svg className="w-16 h-16 mx-auto mb-6 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                </svg>
-                <h3 className="text-2xl mb-3 font-semibold">Upload an image to get started</h3>
-                <p className="text-lg opacity-80">Drag and drop an image here, or click to browse</p>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleFileSelect}
-                />
+          <div className="w-full max-w-4xl bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+            {/* Logo */}
+            <div className="p-4 border-b bg-white">
+              <a href="https://github.com/replicate/kontext-chat-cloudflare">
+                <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
+              </a>
+            </div>
+
+            {/* Upload Area */}
+            <div className="p-8 md:p-12">
+              <div
+                className={`border-3 border-dashed rounded-3xl p-12 md:p-16 text-center cursor-pointer transition-all duration-300 ${
+                  dragActive
+                    ? 'border-green-400 bg-green-50 text-green-700'
+                    : 'border-gray-300 hover:border-orange-400 hover:bg-orange-50 text-gray-700 hover:text-orange-700'
+                }`}
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <div className="upload-content">
+                  <svg className="w-16 h-16 mx-auto mb-6 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                  </svg>
+                  <h3 className="text-2xl mb-3 font-semibold">Upload an image to get started</h3>
+                  <p className="text-lg opacity-80">Drag and drop an image here, or click to browse</p>
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleFileSelect}
+                  />
+                </div>
               </div>
             </div>
           </div>
