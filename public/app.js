@@ -80,13 +80,9 @@ function App() {
       const scaledBlob = await scaleImageTo1Megapixel(file);
       const url = URL.createObjectURL(scaledBlob);
 
-      setCurrentImageBlob(scaledBlob);
-      setCurrentImageUrl(url);
-      setOriginalImageBlob(scaledBlob); // Store as original
-
       // Add initial messages
       setMessages([
-        { type: 'image', image: url, from: 'assistant', id: Date.now() },
+        { type: 'image', image: url, imageBlob: scaledBlob, from: 'assistant', id: Date.now() },
         { type: 'text', text: 'Image uploaded! Tell me how you\'d like to edit it.', from: 'system', id: Date.now() + 1 }
       ]);
 
