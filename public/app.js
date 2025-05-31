@@ -6,6 +6,7 @@ function App() {
   const [loading, setLoading] = React.useState(false);
   // No need for separate image state - just use what's in the chat!
   const [predictionId, setPredictionId] = React.useState(null);
+  const [abortController, setAbortController] = React.useState(null);
 
   // Ref for chat container and file input
   const chatContainerRef = React.useRef(null);
