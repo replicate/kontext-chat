@@ -190,6 +190,10 @@ function App() {
     setMessages(prev => [...prev, loadingMsg]);
 
     try {
+      // Create abort controller for this request
+      const controller = new AbortController();
+      setAbortController(controller);
+
       // Convert blob to data URL for the API
       console.log('Converting blob to data URL...');
       const imageDataUrl = await blobToDataUrl(lastImageBlob);
@@ -205,7 +209,8 @@ function App() {
       const res = await fetch('/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify(requestBody),
+        signal: controller.signal
       });
 
       console.log('Response status:', res.status);
