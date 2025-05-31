@@ -170,3 +170,7 @@ dist
 
 .dev.vars
 .wrangler/
+
+
+# may contain secrets
+chat.ai
