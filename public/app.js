@@ -405,13 +405,26 @@ function App() {
 
             {/* Input Area */}
             <div className="border-t bg-white p-4">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm text-gray-600">Describe how you want to edit the image...</span>
+                <button
+                  onClick={resetApp}
+                  className="text-sm text-orange-600 hover:text-orange-700 flex items-center gap-1 transition-colors"
+                  title="Start over with new image"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                  </svg>
+                  Start over
+                </button>
+              </div>
               <form onSubmit={handleSend} className="flex items-end gap-3">
                 <div className="flex-1 relative">
                   <div className="bg-gray-50 rounded-3xl px-4 py-3 pr-12 border-2 border-transparent focus-within:border-orange-500 transition-colors">
                     <textarea
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
-                      placeholder="Describe how you want to edit the image..."
+                      placeholder="Type your message here..."
                       className="w-full bg-transparent border-none outline-none resize-none text-base"
                       rows="1"
                       style={{ minHeight: '24px', maxHeight: '120px' }}
