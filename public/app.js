@@ -164,6 +164,7 @@ function App() {
     setInput('');
     setCurrentImageBlob(null);
     setCurrentImageUrl(null);
+    setOriginalImageBlob(null);
     setPredictionId(null);
     setLoading(false);
     if (fileInputRef.current) {
