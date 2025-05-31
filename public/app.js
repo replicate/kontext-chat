@@ -174,13 +174,16 @@ function App() {
     setMessages(prev => [...prev, loadingMsg]);
 
     try {
-      const formData = new FormData();
-      formData.append('prompt', input);
-      formData.append('image', currentImageBlob);
+      // Convert blob to data URL for the API
+      const imageDataUrl = await blobToDataUrl(currentImageBlob);
 
       const res = await fetch('/generate-image', {
         method: 'POST',
-        body: formData
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt: input,
+          input_image: imageDataUrl
+        })
       });
 
       if (!res.ok) {
