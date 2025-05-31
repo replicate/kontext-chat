@@ -254,22 +254,17 @@ function App() {
   function cancelGeneration() {
     console.log('Cancel generation called');
 
-    // First stop loading to prevent any further processing
+    // Stop loading
     setLoading(false);
     setPredictionId(null);
 
-    // Reset to original image (not the last generated one)
-    if (originalImageBlob) {
-      console.log('Resetting to original image');
-      setCurrentImageBlob(originalImageBlob);
-    }
-
     // Find the most recent user message to restore to input
-    const currentMessages = [...messages]; // Create a copy to avoid stale closure
+    const currentMessages = [...messages];
     const lastUserMessage = currentMessages.slice().reverse().find(msg => msg.from === 'user' && msg.type === 'text');
     console.log('Last user message:', lastUserMessage);
 
     // Remove loading message and the most recent user message
+    // This automatically makes the previous image the "last image" again
     setMessages(prev => {
       const filtered = prev.filter(msg =>
         msg.type !== 'loading' &&
@@ -279,7 +274,7 @@ function App() {
       return filtered;
     });
 
-    // Restore the cancelled message to input after state updates
+    // Restore the cancelled message to input
     if (lastUserMessage) {
       setTimeout(() => {
         console.log('Restoring text to input:', lastUserMessage.text);
