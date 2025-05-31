@@ -224,13 +224,10 @@ function App() {
       const imageUrl = URL.createObjectURL(imageBlob);
       console.log('Created local image URL:', imageUrl);
 
-      // Update current image
-      setCurrentImageBlob(imageBlob);
-
-      // Replace loading with image
+      // Replace loading with image (store blob in message)
       setMessages(prev => prev.map(msg =>
         msg.type === 'loading' ?
-          { type: 'image', image: imageUrl, from: 'assistant', id: msg.id } :
+          { type: 'image', image: imageUrl, imageBlob: imageBlob, from: 'assistant', id: msg.id } :
           msg
       ));
 
