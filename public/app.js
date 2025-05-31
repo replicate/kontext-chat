@@ -361,7 +361,7 @@ function App() {
                 className={`border-3 border-dashed rounded-3xl p-12 md:p-16 text-center cursor-pointer transition-all duration-300 mb-8 ${
                   dragActive
                     ? 'border-green-400 bg-green-50 text-green-700'
-                    : 'border-gray-300 hover:border-orange-400 hover:bg-orange-50 text-gray-700 hover:text-orange-700'
+                    : 'border-gray-300 bg-gray-50 hover:border-orange-400 hover:bg-orange-50 text-gray-700 hover:text-orange-700'
                 }`}
                 onClick={() => fileInputRef.current?.click()}
               >
