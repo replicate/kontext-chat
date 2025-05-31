@@ -84,6 +84,7 @@ function App() {
 
       setCurrentImageBlob(scaledBlob);
       setCurrentImageUrl(url);
+      setOriginalImageBlob(scaledBlob); // Store as original
 
       // Add initial messages
       setMessages([
