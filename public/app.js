@@ -508,7 +508,7 @@ function App() {
           /* Chat Section */
           <div className="w-full md:max-w-4xl bg-white md:shadow-md overflow-hidden flex flex-col h-screen md:h-screen relative">
             {/* Chat Header with Logo */}
-            <div className="py-3 px-4 bg-white relative flex items-center flex-shrink-0">
+            <div className="p-4 bg-white relative flex items-center flex-shrink-0">
               <button
                 onClick={resetApp}
                 className="absolute left-4 w-8 h-8 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105"
