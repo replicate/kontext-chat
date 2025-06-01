@@ -488,16 +488,19 @@ function App() {
                 {starterImages.map((starter, idx) => (
                   <button
                     key={idx}
-                    className="aspect-square w-full rounded-xl overflow-hidden border-2 border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-all shadow-sm bg-gray-50 group"
+                    className="flex flex-col items-stretch w-full rounded-xl border border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-all shadow-sm bg-gray-50 group"
                     onClick={() => handleStarterImageClick(starter)}
                     disabled={loading}
                     title={starter.suggestedPrompt}
                   >
+                    <div className="aspect-square overflow-hidden rounded-t-lg relative">
                     <img
                       src={starter.imageUrl}
                       alt={starter.suggestedPrompt}
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200"
                     />
+                    </div>
+                    <p className="text-left p-2 text-xs leading-4 border-t"><span className="font-serif text-gray-400 pr-px">“</span>{starter.suggestedPrompt}<span className="font-serif text-gray-400 pl-px">”</span></p>
                   </button>
                 ))}
               </div>
