@@ -14,6 +14,10 @@ const starterImages = [
   {
     imageUrl: 'https://replicate.delivery/pbxt/N5trWTJCJQbJVWz5nhLEscS1w16r1hGl5zuWceJhVSnWZfGu/mona-lisa-1024.jpg',
     suggestedPrompt: 'close her eyes',
+  },
+	{
+    imageUrl: 'https://replicate.delivery/mgxm/b033ff07-1d2e-4768-a137-6c16b5ed4bed/d_1.png',
+    suggestedPrompt: 'Convert to a high-quality restoration, enhancing details and removing any damage or degradation',
   }
 ]
 
@@ -480,7 +484,7 @@ function App() {
 
               {/* Starter Images Section */}
               <div className="text-center text-gray-600 text-base mb-4 font-medium">Or choose a starting image:</div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                 {starterImages.map((starter, idx) => (
                   <button
                     key={idx}
