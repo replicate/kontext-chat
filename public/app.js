@@ -457,7 +457,7 @@ function App() {
               </div>
 
               <div
-                className={`border-2 border-dashed rounded-2xl p-6 md:p-12 text-center cursor-pointer transition-all duration-300 mb-12 ${
+                className={`border-2 border-dashed rounded-2xl p-6 md:p-12 text-center cursor-pointer mb-12 ${
                   dragActive
                     ? 'border-green-400 bg-green-50 text-green-700'
                     : 'border-gray-300 bg-gray-50 hover:border-orange-400 hover:bg-orange-50 text-gray-700 hover:text-orange-700'
@@ -634,15 +634,6 @@ function App() {
           </div>
         )}
       </div>
-
-      {/* Drag and Drop Overlay */}
-      {showUpload && dragActive && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-          <div className="bg-white border-4 border-dashed border-orange-400 rounded-2xl px-12 py-16 text-3xl font-bold text-orange-500 shadow-xl">
-            Drop your image here
-          </div>
-        </div>
-      )}
     </div>
   );
 }
