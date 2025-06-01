@@ -437,7 +437,7 @@ function App() {
   }, [showUpload]);
 
   return (
-    <div className="min-h-screen md:overflow-auto overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#e04f0c] to-[#f47020] md:overflow-auto overflow-hidden">
       {/* Main Content */}
       <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-screen">
         {showUpload ? (
@@ -450,7 +450,7 @@ function App() {
             <PoweredByBanner />
 
             {/* Upload Area */}
-            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto pb-32 md:pb-6 border-x" style={{paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))'}}>
+            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto pb-32 md:pb-6" style={{paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))'}}>
               {/* Intro Text */}
               <div className="text-center mb-6">
                 <p className="text-gray-700 text-base md:text-lg">
@@ -538,7 +538,7 @@ function App() {
             <PoweredByBanner />
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-56 md:pb-6 border-x" ref={chatContainerRef}>
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-56 md:pb-6" ref={chatContainerRef}>
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -588,7 +588,7 @@ function App() {
             </div>
 
             {/* Input Area */}
-            <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 md:relative md:border-t md:border-x" style={{paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))'}}>
+            <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 md:relative md:border-t" style={{paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))'}}>
               <form onSubmit={handleSend} className="flex items-end gap-3 max-w-4xl mx-auto">
                 <div className="flex-1 relative">
                   <div className="bg-gray-50 rounded-3xl px-4 py-3 pr-12 border-2 border-transparent focus-within:border-orange-500 transition-colors">
