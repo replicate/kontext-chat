@@ -458,7 +458,7 @@ function App() {
 
               <div className="flex flex-col justify-center mt-8 md:mt-6" style={{ minHeight: '120px' }}>
                 <div
-                  className={`border-2 border-dashed rounded-2xl p-6 md:p-12 text-center cursor-pointer transition-all duration-300 mb-6 ${
+                  className={`border-2 border-dashed rounded-2xl p-6 md:p-12 text-center cursor-pointer transition-all duration-300 mt-6 ${
                     dragActive
                       ? 'border-green-400 bg-green-50 text-green-700'
                       : 'border-gray-300 bg-gray-50 hover:border-orange-400 hover:bg-orange-50 text-gray-700 hover:text-orange-700'
@@ -470,7 +470,7 @@ function App() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                     </svg>
                     <h3 className="text-lg md:text-xl mb-1 md:mb-2 font-semibold">Upload an image to get started</h3>
-                    <p className="text-sm md:text-base opacity-80">Drag and drop an image here, or click to browse</p>
+                    <p className="text-base md:text-lg opacity-80">Drag and drop an image here, or click to browse</p>
                     <input
                       type="file"
                       ref={fileInputRef}
@@ -483,7 +483,7 @@ function App() {
               </div>
 
               {/* Starter Images Section */}
-              <div className="mt-4">
+              <div className="mt-16">
                 <div className="text-center text-gray-600 text-base mb-4 font-medium">Or choose a starting image:</div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {starterImages.map((starter, idx) => (
@@ -506,7 +506,7 @@ function App() {
 
               {/* Footer Text */}
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <p className="text-gray-600 text-sm leading-relaxed text-center">
+                <p className="text-gray-600 text-base md:text-lg leading-relaxed text-center">
                   Kontext Chat is powered by <a href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat" className="underline text-orange-600 hover:text-orange-700">Flux Kontext Pro</a>, a new image model from <a href="https://black-forest-labs.com/" className="underline text-orange-600 hover:text-orange-700">Black Forest Labs</a>, running on <a href="https://replicate.com?utm_source=project&utm_campaign=kontext-chat" className="underline text-orange-600 hover:text-orange-700">Replicate</a>. The app is built with Hono and React, running on <a href="https://workers.dev/" className="underline text-orange-600 hover:text-orange-700">Cloudflare Workers</a>. Learn how to build your own app by taking a look at the <a href="https://github.com/replicate/kontext-chat" className="underline text-orange-600 hover:text-orange-700">source code</a> on GitHub.
                 </p>
               </div>
@@ -567,7 +567,7 @@ function App() {
                         <span className="text-gray-600">Generating image...</span>
                       </div>
                     )}
-                    {msg.text && <div className="text-sm md:text-base">{msg.text}</div>}
+                    {msg.text && <div className="text-base md:text-lg">{msg.text}</div>}
 
                     {/* Delete button for user messages */}
                     {msg.showDelete && (
