@@ -437,10 +437,10 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#e04f0c] to-[#f47020] md:overflow-auto overflow-hidden">
       {/* Main Content */}
-      <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-screen">
+      <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-auto">
         {showUpload ? (
           /* Upload Section */
-          <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col h-screen md:h-screen overflow-hidden">
+          <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col h-screen md:h-auto overflow-hidden md:overflow-visible">
             {/* Logo */}
             <div className="p-4 md:p-2 bg-white border-b border-gray-200">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 md:w-1/4 mx-auto" alt="Kontext Chat" />
@@ -448,7 +448,7 @@ function App() {
             <PoweredByBanner />
 
             {/* Upload Area */}
-            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto pb-32 md:pb-6" style={{paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))'}}>
+            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto md:overflow-visible pb-32 md:pb-6" style={{paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))'}}>
               {/* Intro Text */}
               <div className="text-center mb-6">
                 <p className="text-gray-700 text-base md:text-lg">
