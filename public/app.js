@@ -438,7 +438,7 @@ function App() {
       <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-auto">
         {showUpload ? (
           /* Upload Section */
-          <div className="w-full md:max-w-4xl bg-white md:shadow flex flex-col h-screen md:h-auto overflow-hidden md:overflow-visible">
+          <div className="w-full md:max-w-4xl bg-white md:shadow flex flex-col h-screen md:h-auto overflow-hidden md:overflow-visible flex-1">
             {/* Logo */}
             <div className="p-4 md:p-2 bg-white border-b border-gray-200">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 md:w-1/4 mx-auto" alt="Kontext Chat" />
