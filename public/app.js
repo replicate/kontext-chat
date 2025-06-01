@@ -431,6 +431,21 @@ function App() {
               <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
             </div>
 
+            {/* Description */}
+            <div className="px-4 md:px-6 pt-4 md:pt-6 pb-2 bg-white text-center">
+              <p className="text-gray-700 text-base md:text-lg">
+                Chat with images to edit them.{' '}
+                <a 
+                  href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat" 
+                  className="text-orange-600 hover:text-orange-700 underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Powered by FLUX.1 Kontext on Replicate.
+                </a>
+              </p>
+            </div>
+
             {/* Upload Area */}
             <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto md:rounded-b-2xl">
               <div className="flex flex-col justify-center" style={{ minHeight: '120px' }}>
@@ -479,6 +494,13 @@ function App() {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              {/* Footer Text */}
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <p className="text-gray-600 text-sm leading-relaxed text-center">
+                  Kontext Chat is powered by <a href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat" className="underline text-orange-600 hover:text-orange-700">Flux Kontext Pro</a>, a new image model from <a href="https://black-forest-labs.com/" className="underline text-orange-600 hover:text-orange-700">Black Forest Labs</a>, running on <a href="https://replicate.com?utm_source=project&utm_campaign=kontext-chat" className="underline text-orange-600 hover:text-orange-700">Replicate</a>. The app is built with Hono and React, running on <a href="https://workers.dev/" className="underline text-orange-600 hover:text-orange-700">Cloudflare Workers</a>. Learn how to build your own app by taking a look at the <a href="https://github.com/replicate/kontext-chat" className="underline text-orange-600 hover:text-orange-700">source code</a> on GitHub.
+                </p>
               </div>
             </div>
           </div>
@@ -612,50 +634,6 @@ function App() {
       {(showUpload || (!showUpload && isDesktop)) && (
         <div className="w-full max-w-4xl mx-auto px-4 mb-8">
           <footer className="text-center">
-            <p className="text-orange-200 text-base md:text-lg leading-relaxed px-12 mb-8">
-              Powered by{' '}
-              <a href="https://replicate.com/black-forest-labs/flux-kontext-pro" className="underline text-orange-100 hover:text-white">
-                FLUX.1 Kontext Pro
-              </a> on Replicate. Learn how to{' '}
-              <a href="https://github.com/replicate/kontext-chat-cloudflare" className="underline text-orange-100 hover:text-white">
-                make this on GitHub.
-              </a>
-            </p>
-
-            <nav className="flex justify-center items-center space-x-4">
-              <a
-                className="inline-block w-12 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
-                href="https://replicate.com/black-forest-labs?utm_source=project&utm_campaign=kontext-chat-cloudflare"
-              >
-                <img
-                  src="/logomarks/bfl.svg"
-                  alt="Black Forest Labs"
-                  className="w-full h-full p-2 hover:p-1 transition-all duration-200"
-                />
-              </a>
-
-              <a
-                className="inline-block w-12 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
-                href="https://replicate.com?utm_source=project&utm_campaign=kontext-chat-cloudflare"
-              >
-                <img
-                  src="/logomarks/replicate.svg"
-                  alt="Replicate"
-                  className="w-full h-full p-2 hover:p-1 transition-all duration-200"
-                />
-              </a>
-
-              <a
-                className="inline-block w-12 h-12 opacity-60 hover:opacity-100 transition-all duration-200"
-                href="https://github.com/replicate/kontext-chat-cloudflare"
-              >
-                <img
-                  src="/logomarks/github.svg"
-                  alt="GitHub"
-                  className="w-full h-full p-2 hover:p-1 transition-all duration-200"
-                />
-              </a>
-            </nav>
           </footer>
         </div>
       )}
