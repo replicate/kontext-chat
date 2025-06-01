@@ -28,6 +28,15 @@ function App() {
   const [abortController, setAbortController] = React.useState(null);
   // New: track if a starter image was used (for future logic if needed)
   const [starterUsed, setStarterUsed] = React.useState(false);
+  
+  // Simple desktop check
+  const [isDesktop, setIsDesktop] = React.useState(false);
+  React.useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
 
   // Ref for chat container and file input
   const chatContainerRef = React.useRef(null);
@@ -41,6 +50,25 @@ function App() {
       }, 50);
     }
   }, [messages]);
+
+  // Prevent body scroll on mobile in chat mode
+  React.useEffect(() => {
+    if (!showUpload && !isDesktop) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [showUpload, isDesktop]);
 
   // Drag and drop state
   const [dragActive, setDragActive] = React.useState(false);
@@ -392,9 +420,9 @@ function App() {
   }, [showUpload]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e04f0c] to-[#f47020]">
+    <div className="min-h-screen bg-gradient-to-br from-[#e04f0c] to-[#f47020] md:overflow-auto overflow-hidden">
       {/* Main Content */}
-      <div className="min-h-screen flex flex-col md:flex md:items-center md:justify-center md:p-8">
+      <div className="min-h-screen flex flex-col md:flex md:items-center md:justify-center md:p-8 h-screen md:h-auto">
         {showUpload ? (
           /* Upload Section */
           <div className="w-full md:max-w-4xl bg-white md:rounded-2xl md:shadow-md flex flex-col min-h-screen md:min-h-0 md:mb-8">
@@ -456,9 +484,9 @@ function App() {
           </div>
         ) : (
           /* Chat Section */
-          <div className="w-full md:max-w-4xl bg-white md:rounded-2xl md:shadow-md overflow-hidden flex flex-col h-screen md:h-[calc(90vh-4rem)]">
+          <div className="w-full md:max-w-4xl bg-white md:rounded-2xl md:shadow-md overflow-hidden flex flex-col h-screen md:h-[calc(90vh-4rem)] relative">
             {/* Chat Header with Logo */}
-            <div className="py-3 px-4 md:border-b bg-white relative flex items-center md:rounded-t-2xl">
+            <div className="py-3 px-4 md:border-b bg-white relative flex items-center md:rounded-t-2xl flex-shrink-0">
               <button
                 onClick={resetApp}
                 className="absolute left-4 w-8 h-8 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105"
@@ -478,7 +506,7 @@ function App() {
             </div>
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4" ref={chatContainerRef}>
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-56 md:pb-6" ref={chatContainerRef}>
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -528,8 +556,8 @@ function App() {
             </div>
 
             {/* Input Area */}
-            <div className="bg-white md:border-t p-4">
-              <form onSubmit={handleSend} className="flex items-end gap-3">
+            <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 md:relative md:border-t" style={{paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))'}}>
+              <form onSubmit={handleSend} className="flex items-end gap-3 max-w-4xl mx-auto">
                 <div className="flex-1 relative">
                   <div className="bg-gray-50 rounded-3xl px-4 py-3 pr-12 border-2 border-transparent focus-within:border-orange-500 transition-colors">
                     <textarea
@@ -581,7 +609,7 @@ function App() {
       </div>
 
       {/* Footer - Only show in upload mode or on desktop in chat mode */}
-      {(showUpload || !showUpload && window.innerWidth >= 768) && (
+      {(showUpload || (!showUpload && isDesktop)) && (
         <div className="w-full max-w-4xl mx-auto px-4 mb-8">
           <footer className="text-center">
             <p className="text-orange-200 text-base md:text-lg leading-relaxed px-12 mb-8">
