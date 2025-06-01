@@ -494,13 +494,13 @@ function App() {
                     title={starter.suggestedPrompt}
                   >
                     <div className="aspect-square overflow-hidden rounded-t-lg relative">
-                    <img
-                      src={starter.imageUrl}
-                      alt={starter.suggestedPrompt}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200"
-                    />
+                      <img
+                        src={starter.imageUrl}
+                        alt={starter.suggestedPrompt}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200"
+                      />
                     </div>
-                    <p className="text-left p-2 text-xs leading-4 border-t"><span className="font-serif text-gray-400 pr-px">“</span>{starter.suggestedPrompt}<span className="font-serif text-gray-400 pl-px">”</span></p>
+                    <p className="flex-1 text-left p-2 text-xs leading-4 border-t line-clamp-2 overflow-hidden text-ellipsis relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 before:bg-gradient-to-t before:from-gray-50 before:via-gray-50 before:to-transparent before:rounded-b-xl before:mx-[2px]"><span className="font-serif text-gray-400 pr-px">"</span>{starter.suggestedPrompt}<span className="font-serif text-gray-400 pl-px">"</span></p>
                   </button>
                 ))}
               </div>
