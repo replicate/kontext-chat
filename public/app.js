@@ -14,21 +14,23 @@ const starterImages = [
   {
     imageUrl: 'https://replicate.delivery/pbxt/N5trWTJCJQbJVWz5nhLEscS1w16r1hGl5zuWceJhVSnWZfGu/mona-lisa-1024.jpg',
     suggestedPrompt: 'close her eyes',
+  },
+  {
+    imageUrl: 'https://replicate.delivery/mgxm/b033ff07-1d2e-4768-a137-6c16b5ed4bed/d_1.png',
+    suggestedPrompt: 'Convert to a high-quality restoration, enhancing details and removing any damage or degradation',
   }
 ]
 
 function PoweredByBanner() {
   return (
-    <div className="bg-orange-500 text-white text-center text-base md:text-lg py-2">
       <a
         href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat"
         target="_blank"
         rel="noopener noreferrer"
-        className="underline"
+        className="bg-orange-500 text-white text-center text-base md:text-lg py-2 rounded-t underline hover:bg-orange-600 transition-colors"
       >
         Powered by FLUX.1 Kontext on Replicate
       </a>
-    </div>
   );
 }
 
@@ -435,15 +437,15 @@ function App() {
   }, [showUpload]);
 
   return (
-    <div className="min-h-screen md:overflow-auto overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#e04f0c] to-[#f47020] md:overflow-auto overflow-hidden">
       {/* Main Content */}
       <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-auto">
         {showUpload ? (
           /* Upload Section */
           <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col h-screen md:h-auto overflow-hidden md:overflow-visible">
             {/* Logo */}
-            <div className="p-4 md:p-2 bg-white border-b border-gray-200">
-              <img src="/kontext-chat-rainbow.png" className="w-1/3 md:w-1/4 mx-auto" alt="Kontext Chat" />
+            <div className="p-4 md:p-2">
+              <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
             </div>
             <PoweredByBanner />
 
@@ -482,20 +484,23 @@ function App() {
 
               {/* Starter Images Section */}
               <div className="text-center text-gray-600 text-base mb-4 font-medium">Or choose a starting image:</div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 items-stretch">
                 {starterImages.map((starter, idx) => (
                   <button
                     key={idx}
-                    className="aspect-square w-full rounded-xl overflow-hidden border-2 border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-all shadow-sm bg-gray-50 group"
+                    className="flex flex-col justify-start w-full rounded-xl border shadow border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-all shadow-sm bg-gray-50 group"
                     onClick={() => handleStarterImageClick(starter)}
                     disabled={loading}
                     title={starter.suggestedPrompt}
                   >
+                    <div className="aspect-square overflow-hidden rounded-t-xl">
                     <img
                       src={starter.imageUrl}
                       alt={starter.suggestedPrompt}
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200"
                     />
+                    </div>
+                    <p className="text-left text-xs leading-4 p-2 border-t"><span class="text-gray-500">"</span>{starter.suggestedPrompt}<span class="text-gray-500">"</span></p>
                   </button>
                 ))}
               </div>
@@ -533,7 +538,7 @@ function App() {
             <PoweredByBanner />
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-56 md:pb-6 border-x" ref={chatContainerRef}>
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-56 md:pb-6" ref={chatContainerRef}>
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -583,7 +588,7 @@ function App() {
             </div>
 
             {/* Input Area */}
-            <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 md:relative md:border-t md:border-x" style={{paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))'}}>
+            <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 md:relative md:border-t" style={{paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))'}}>
               <form onSubmit={handleSend} className="flex items-end gap-3 max-w-4xl mx-auto">
                 <div className="flex-1 relative">
                   <div className="bg-gray-50 rounded-3xl px-4 py-3 pr-12 border-2 border-transparent focus-within:border-orange-500 transition-colors">
