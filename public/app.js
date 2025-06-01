@@ -14,21 +14,23 @@ const starterImages = [
   {
     imageUrl: 'https://replicate.delivery/pbxt/N5trWTJCJQbJVWz5nhLEscS1w16r1hGl5zuWceJhVSnWZfGu/mona-lisa-1024.jpg',
     suggestedPrompt: 'close her eyes',
+  },
+  {
+    imageUrl: 'https://replicate.delivery/mgxm/b033ff07-1d2e-4768-a137-6c16b5ed4bed/d_1.png',
+    suggestedPrompt: 'Convert to a high-quality restoration, enhancing details and removing any damage or degradation',
   }
 ]
 
 function PoweredByBanner() {
   return (
-    <div className="bg-orange-500 text-white text-center text-base md:text-lg py-2">
       <a
         href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat"
         target="_blank"
         rel="noopener noreferrer"
-        className="underline"
+        className="mx-4 rounded-full bg-orange-500 text-white text-center text-base md:text-lg py-1 shadow-lg underline hover:bg-orange-600 transition-colors"
       >
         Powered by FLUX.1 Kontext on Replicate
       </a>
-    </div>
   );
 }
 
@@ -442,7 +444,7 @@ function App() {
           /* Upload Section */
           <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col h-screen md:h-screen overflow-hidden">
             {/* Logo */}
-            <div className="p-4 bg-white border-b border-gray-200">
+            <div className="p-4">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
             </div>
             <PoweredByBanner />
@@ -482,20 +484,23 @@ function App() {
 
               {/* Starter Images Section */}
               <div className="text-center text-gray-600 text-base mb-4 font-medium">Or choose a starting image:</div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 items-stretch">
                 {starterImages.map((starter, idx) => (
                   <button
                     key={idx}
-                    className="aspect-square w-full rounded-xl overflow-hidden border-2 border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-all shadow-sm bg-gray-50 group"
+                    className="flex flex-col justify-start w-full rounded-xl border shadow border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-all shadow-sm bg-gray-50 group"
                     onClick={() => handleStarterImageClick(starter)}
                     disabled={loading}
                     title={starter.suggestedPrompt}
                   >
+                    <div className="aspect-square overflow-hidden rounded-t-xl">
                     <img
                       src={starter.imageUrl}
                       alt={starter.suggestedPrompt}
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200"
                     />
+                    </div>
+                    <p className="text-left text-xs leading-4 p-2 border-t"><span class="text-gray-500">"</span>{starter.suggestedPrompt}<span class="text-gray-500">"</span></p>
                   </button>
                 ))}
               </div>
