@@ -431,8 +431,8 @@ function App() {
               <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
             </div>
 
-            {/* Description (desktop) */}
-            <div className="px-4 md:px-6 pt-4 md:pt-6 pb-2 bg-white text-center hidden md:block">
+            {/* Description */}
+            <div className="p-4 bg-white text-center">
               <p className="text-gray-700 text-base md:text-lg">
                 Chat with images to edit them.{' '}<br />
                 <a 
@@ -448,20 +448,6 @@ function App() {
 
             {/* Upload Area */}
             <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto">
-              {/* Description (mobile, scrollable) */}
-              <div className="mb-4 md:hidden text-center">
-                <p className="text-gray-700 text-base">
-                  Chat with images to edit them.{' '}
-                  <a 
-                    href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat" 
-                    className="text-orange-600 hover:text-orange-700 underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Powered by FLUX.1 Kontext on Replicate.
-                  </a>
-                </p>
-              </div>
               <div className="flex flex-col justify-center mt-8 md:mt-6" style={{ minHeight: '120px' }}>
                 <div
                   className={`border-2 border-dashed rounded-2xl p-6 md:p-12 text-center cursor-pointer transition-all duration-300 mb-6 ${
