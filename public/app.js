@@ -19,16 +19,14 @@ const starterImages = [
 
 function PoweredByBanner() {
   return (
-    <div className="bg-orange-500 text-white text-center text-base md:text-lg py-2">
       <a
         href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat"
         target="_blank"
         rel="noopener noreferrer"
-        className="underline"
+        className="block md:rounded-t underline bg-orange-500 text-white text-center text-base md:text-lg py-2 hover:bg-orange-600 focus:bg-orange-600 transition-colors"
       >
         Powered by FLUX.1 Kontext on Replicate
       </a>
-    </div>
   );
 }
 
@@ -440,7 +438,7 @@ function App() {
       <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-auto">
         {showUpload ? (
           /* Upload Section */
-          <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col h-screen md:h-auto overflow-hidden md:overflow-visible">
+          <div className="w-full md:max-w-4xl bg-white md:shadow flex flex-col h-screen md:h-auto overflow-hidden md:overflow-visible">
             {/* Logo */}
             <div className="p-4 md:p-2 bg-white border-b border-gray-200">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 md:w-1/4 mx-auto" alt="Kontext Chat" />
@@ -448,7 +446,7 @@ function App() {
             <PoweredByBanner />
 
             {/* Upload Area */}
-            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto md:overflow-visible pb-32 md:pb-6 border-x" style={{paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))'}}>
+            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto md:overflow-visible pb-8 border-x" style={{paddingBottom: 'calc(2rem + env(safe-area-inset-bottom))'}}>
               {/* Intro Text */}
               <div className="text-center mb-6">
                 <p className="text-gray-700 text-base md:text-lg">
@@ -510,7 +508,7 @@ function App() {
           </div>
         ) : (
           /* Chat Section */
-          <div className="w-full md:max-w-4xl bg-white md:shadow-md overflow-hidden flex flex-col h-screen md:h-screen relative">
+          <div className="w-full md:max-w-4xl bg-white md:shadow-md overflow-hidden flex flex-col h-screen relative">
             {/* Chat Header with Logo */}
             <div className="p-4 md:p-2 bg-white border-b border-gray-200 relative flex items-center flex-shrink-0">
               <button
@@ -533,7 +531,7 @@ function App() {
             <PoweredByBanner />
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-56 md:pb-6 border-x" ref={chatContainerRef}>
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-28 md:pb-6 border-x" ref={chatContainerRef}>
               {messages.map((msg) => (
                 <div
                   key={msg.id}
