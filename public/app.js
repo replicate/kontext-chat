@@ -435,7 +435,7 @@ function App() {
   }, [showUpload]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e04f0c] to-[#f47020] md:overflow-auto overflow-hidden">
+    <div className="min-h-screen md:overflow-auto overflow-hidden">
       {/* Main Content */}
       <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-screen">
         {showUpload ? (
