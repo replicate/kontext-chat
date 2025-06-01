@@ -17,6 +17,21 @@ const starterImages = [
   }
 ]
 
+function PoweredByBanner() {
+  return (
+    <div className="bg-orange-500 text-white text-center text-base md:text-lg py-2">
+      <a
+        href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline"
+      >
+        Powered by FLUX.1 Kontext on Replicate
+      </a>
+    </div>
+  );
+}
+
 function App() {
   // State for upload vs chat mode
   const [showUpload, setShowUpload] = React.useState(true);
@@ -430,24 +445,17 @@ function App() {
             <div className="p-4 bg-white border-b border-gray-200">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
             </div>
-
-            {/* Description */}
-            <div className="p-4 bg-white text-center">
-              <p className="text-gray-700 text-base md:text-lg">
-                Chat with images to edit them.{' '}<br />
-                <a 
-                  href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat" 
-                  className="text-orange-600 hover:text-orange-700 underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Powered by FLUX.1 Kontext on Replicate.
-                </a>
-              </p>
-            </div>
+            <PoweredByBanner />
 
             {/* Upload Area */}
             <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto">
+              {/* Intro Text */}
+              <div className="text-center mb-6">
+                <p className="text-gray-700 text-base md:text-lg">
+                  Chat with images to edit them.
+                </p>
+              </div>
+
               <div className="flex flex-col justify-center mt-8 md:mt-6" style={{ minHeight: '120px' }}>
                 <div
                   className={`border-2 border-dashed rounded-2xl p-6 md:p-12 text-center cursor-pointer transition-all duration-300 mb-6 ${
@@ -526,6 +534,7 @@ function App() {
                 title="Back to upload"
               />
             </div>
+            <PoweredByBanner />
 
             {/* Chat Messages */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-56 md:pb-6" ref={chatContainerRef}>
