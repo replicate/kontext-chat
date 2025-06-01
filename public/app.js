@@ -439,18 +439,18 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#e04f0c] to-[#f47020] md:overflow-auto overflow-hidden">
       {/* Main Content */}
-      <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-screen">
+      <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-auto">
         {showUpload ? (
           /* Upload Section */
-          <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col h-screen md:h-screen overflow-hidden">
+          <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col h-screen md:h-auto overflow-hidden md:overflow-visible">
             {/* Logo */}
-            <div className="p-4">
+            <div className="p-4 md:p-2">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
             </div>
             <PoweredByBanner />
 
             {/* Upload Area */}
-            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto pb-32 md:pb-6" style={{paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))'}}>
+            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto md:overflow-visible pb-32 md:pb-6 border-x" style={{paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))'}}>
               {/* Intro Text */}
               <div className="text-center mb-6">
                 <p className="text-gray-700 text-base md:text-lg">
@@ -459,7 +459,7 @@ function App() {
               </div>
 
               <div
-                className={`border-2 border-dashed rounded-2xl p-6 md:p-12 text-center cursor-pointer transition-all duration-300 mb-12 ${
+                className={`border-2 border-dashed rounded-2xl p-6 md:p-12 text-center cursor-pointer mb-12 ${
                   dragActive
                     ? 'border-green-400 bg-green-50 text-green-700'
                     : 'border-gray-300 bg-gray-50 hover:border-orange-400 hover:bg-orange-50 text-gray-700 hover:text-orange-700'
@@ -517,7 +517,7 @@ function App() {
           /* Chat Section */
           <div className="w-full md:max-w-4xl bg-white md:shadow-md overflow-hidden flex flex-col h-screen md:h-screen relative">
             {/* Chat Header with Logo */}
-            <div className="p-4 bg-white border-b border-gray-200 relative flex items-center flex-shrink-0">
+            <div className="p-4 md:p-2 bg-white border-b border-gray-200 relative flex items-center flex-shrink-0">
               <button
                 onClick={resetApp}
                 className="absolute left-4 w-8 h-8 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105"
@@ -529,7 +529,7 @@ function App() {
               </button>
               <img 
                 src="/kontext-chat-rainbow.png" 
-                className="w-1/3 mx-auto cursor-pointer hover:opacity-90 transition-opacity" 
+                className="w-1/3 md:w-1/4 mx-auto cursor-pointer hover:opacity-90 transition-opacity" 
                 alt="Kontext Chat" 
                 onClick={resetApp}
                 title="Back to upload"
@@ -639,15 +639,6 @@ function App() {
           </div>
         )}
       </div>
-
-      {/* Drag and Drop Overlay */}
-      {showUpload && dragActive && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-          <div className="bg-white border-4 border-dashed border-orange-400 rounded-2xl px-12 py-16 text-3xl font-bold text-orange-500 shadow-xl">
-            Drop your image here
-          </div>
-        </div>
-      )}
     </div>
   );
 }
