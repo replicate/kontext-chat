@@ -442,8 +442,8 @@ function App() {
           /* Upload Section */
           <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col h-screen md:h-screen overflow-hidden">
             {/* Logo */}
-            <div className="p-4 bg-white border-b border-gray-200">
-              <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
+            <div className="p-4 md:p-2 bg-white border-b border-gray-200">
+              <img src="/kontext-chat-rainbow.png" className="w-1/3 md:w-1/4 mx-auto" alt="Kontext Chat" />
             </div>
             <PoweredByBanner />
 
@@ -512,7 +512,7 @@ function App() {
           /* Chat Section */
           <div className="w-full md:max-w-4xl bg-white md:shadow-md overflow-hidden flex flex-col h-screen md:h-screen relative">
             {/* Chat Header with Logo */}
-            <div className="p-4 bg-white border-b border-gray-200 relative flex items-center flex-shrink-0">
+            <div className="p-4 md:p-2 bg-white border-b border-gray-200 relative flex items-center flex-shrink-0">
               <button
                 onClick={resetApp}
                 className="absolute left-4 w-8 h-8 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105"
@@ -524,7 +524,7 @@ function App() {
               </button>
               <img 
                 src="/kontext-chat-rainbow.png" 
-                className="w-1/3 mx-auto cursor-pointer hover:opacity-90 transition-opacity" 
+                className="w-1/3 md:w-1/4 mx-auto cursor-pointer hover:opacity-90 transition-opacity" 
                 alt="Kontext Chat" 
                 onClick={resetApp}
                 title="Back to upload"
