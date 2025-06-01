@@ -27,7 +27,7 @@ function PoweredByBanner() {
         href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat"
         target="_blank"
         rel="noopener noreferrer"
-        className="mx-4 rounded-full bg-orange-500 text-white text-center text-base md:text-lg py-1 shadow-lg underline hover:bg-orange-600 transition-colors"
+        className="bg-orange-500 text-white text-center text-base md:text-lg py-2 rounded-t underline hover:bg-orange-600 transition-colors"
       >
         Powered by FLUX.1 Kontext on Replicate
       </a>
