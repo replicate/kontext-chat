@@ -66,9 +66,9 @@ function App() {
     }
   }, [messages]);
 
-  // Prevent body scroll on mobile in chat mode
+  // Lock body scrolling on mobile for a consistent experience across screens
   React.useEffect(() => {
-    if (!showUpload && !isDesktop) {
+    if (!isDesktop) {
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
@@ -77,13 +77,13 @@ function App() {
       document.body.style.position = '';
       document.body.style.width = '';
     }
-    
+
     return () => {
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.width = '';
     };
-  }, [showUpload, isDesktop]);
+  }, [isDesktop]);
 
   // Drag and drop state
   const [dragActive, setDragActive] = React.useState(false);
@@ -440,7 +440,7 @@ function App() {
       <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-screen">
         {showUpload ? (
           /* Upload Section */
-          <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col min-h-screen md:min-h-screen">
+          <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col h-screen md:h-screen overflow-hidden">
             {/* Logo */}
             <div className="p-4 bg-white border-b border-gray-200">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto" alt="Kontext Chat" />
@@ -448,7 +448,7 @@ function App() {
             <PoweredByBanner />
 
             {/* Upload Area */}
-            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto">
+            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto pb-32 md:pb-6" style={{paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))'}}>
               {/* Intro Text */}
               <div className="text-center mb-6">
                 <p className="text-gray-700 text-base md:text-lg">
