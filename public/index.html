@@ -1,44 +1,324 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-		<meta name="theme-color" content="#e04f0c" />
-		<!-- React and ReactDOM from CDN -->
-		<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-		<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-		<!-- Babel for JSX support in the browser -->
-		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-		<!-- Tailwind CSS CDN -->
-		<script src="https://cdn.tailwindcss.com"></script>
-		<!-- og:tags -->
-		 <!-- Primary Meta Tags -->
-		<title>Kontext Chat - Chat with images to edit them, powered by FLUX.1 Kontext on Replicate</title>
-		<meta name="title" content="Kontext Chat - Chat with images to edit them, powered by FLUX.1 Kontext on Replicate" />
-		<meta name="description" content="Kontext Chat is a tool for image editing powered by Flux Kontext Pro, a new image model from Black Forest Labs, running on Replicate. The app is built with Hono and React, running on Cloudflare Workers. Learn how to build your own app by taking a look at the source code on GitHub." />
-
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://kontext-chat.replicate.dev/" />
-		<meta property="og:title" content="Kontext Chat - Chat with images to edit them" />
-		<meta property="og:description" content="Kontext Chat is a tool for image editing powered by Flux Kontext Pro, a new image model from Black Forest Labs, running on Replicate. The app is built with Hono and React, running on Cloudflare Workers. Learn how to build your own app by taking a look at the source code on GitHub." />
-		<meta property="og:image" content="https://kontext-chat.replicate.dev/kontext-chat.jpg" />
-
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content="https://kontext-chat.replicate.dev/" />
-		<meta property="twitter:title" content="Kontext Chat - Chat with images to edit them" />
-		<meta property="twitter:description" content="Kontext Chat is a tool for image editing powered by Flux Kontext Pro, a new image model from Black Forest Labs, running on Replicate. The app is built with Hono and React, running on Cloudflare Workers. Learn how to build your own app by taking a look at the source code on GitHub." />
-		<meta property="twitter:image" content="https://kontext-chat.replicate.dev/kontext-chat.jpg" />
-
-		<!-- Meta Tags Generated with https://metatags.io -->
-	</head>
-	<body class="bg-gradient-to-br from-[#e04f0c] to-[#f47020] min-h-screen flex items-center justify-center">
-		<div id="root"></div>
-		<script src="app.js" type="text/babel"></script>
-		<script type="text/babel">
-			const root = ReactDOM.createRoot(document.getElementById('root'));
-			root.render(<App />);
-		</script>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immersive Digital Space</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .card-hover-effect {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .card-hover-effect:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .glow {
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+        
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite, pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen overflow-x-hidden relative text-white">
+    <!-- Floating particles -->
+    <div id="particles-container"></div>
+    
+    <!-- Main content -->
+    <div class="container mx-auto px-4 py-16 relative z-10">
+        <!-- Hero section -->
+        <section class="min-h-[80vh] flex flex-col justify-center items-center text-center fade-in">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 glow" style="color: #ffcc00;">
+                Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-300">Digital Wonderland</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl opacity-90">
+                Explore an immersive experience filled with vibrant colors, smooth animations, and interactive magic.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="px-8 py-3 rounded-full bg-white text-purple-600 font-bold transform transition-all hover:scale-110 hover:shadow-xl hover:bg-purple-100">
+                    <i class="fas fa-play mr-2"></i> Begin Journey
+                </button>
+                <button class="px-8 py-3 rounded-full border-2 border-white font-bold transform transition-all hover:scale-110 hover:bg-white hover:bg-opacity-20">
+                    <i class="fas fa-info-circle mr-2"></i> Learn More
+                </button>
+            </div>
+            <div class="mt-16 scroll-indicator">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+        </section>
+        
+        <!-- Features section -->
+        <section class="my-32">
+            <h2 class="text-4xl font-bold text-center mb-16 glow" style="color: #00ffcc;">Interactive Elements</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="card-hover-effect bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8 border border-white border-opacity-20">
+                    <div class="text-5xl mb-6 text-pink-400 glow">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Magical Animations</h3>
+                    <p class="opacity-80">Experience buttery smooth transitions and animations that respond to your every interaction.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card-hover-effect bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8 border border-white border-opacity-20">
+                    <div class="text-5xl mb-6 text-yellow-300 glow">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Vibrant Colors</h3>
+                    <p class="opacity-80">Immerse yourself in a world of shifting gradients and dynamic color schemes.</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card-hover-effect bg-white bg-opacity-10 backdrop-blur-lg rounded-xl p-8 border border-white border-opacity-20">
+                    <div class="text-5xl mb-6 text-blue-300 glow">
+                        <i class="fas fa-hand-pointer"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Interactive Playground</h3>
+                    <p class="opacity-80">Every element responds to your touch with delightful feedback and animations.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Animated showcase -->
+        <section class="my-32 relative overflow-hidden rounded-3xl bg-black bg-opacity-30 backdrop-blur-lg p-12 border border-white border-opacity-20">
+            <div class="absolute -top-20 -left-20 w-40 h-40 rounded-full bg-purple-500 opacity-20 filter blur-3xl"></div>
+            <div class="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-blue-500 opacity-20 filter blur-3xl"></div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-4xl font-bold mb-6 glow" style="color: #ff6bff;">Dynamic Visual Experience</h2>
+                    <p class="text-lg mb-6 opacity-90">
+                        Watch as elements come to life with smooth transitions, particle effects, and responsive animations that create depth and dimension.
+                    </p>
+                    <button class="px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 font-bold transform transition-all hover:scale-105 hover:shadow-lg">
+                        Try It Yourself
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center shadow-2xl animate-spin" style="animation-duration: 20s;">
+                            <div class="w-56 h-56 rounded-full bg-gradient-to-br from-pink-500 to-yellow-400 flex items-center justify-center animate-spin" style="animation-duration: 15s; animation-direction: reverse;">
+                                <div class="w-48 h-48 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center animate-spin" style="animation-duration: 10s;">
+                                    <div class="w-40 h-40 rounded-full bg-black bg-opacity-70 backdrop-blur-md flex items-center justify-center">
+                                        <i class="fas fa-play text-4xl text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-6 -right-6 w-16 h-16 rounded-full bg-yellow-400 glow animate-bounce"></div>
+                        <div class="absolute -bottom-6 -left-6 w-16 h-16 rounded-full bg-pink-500 glow animate-bounce" style="animation-delay: 0.5s;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Interactive gallery -->
+        <section class="my-32">
+            <h2 class="text-4xl font-bold text-center mb-16 glow" style="color: #ff9a56;">Interactive Gallery</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square bg-blue-400 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-xl hover:z-10 hover:rotate-3 cursor-pointer" style="background: linear-gradient(45deg, #3b82f6, #8b5cf6);"></div>
+                <div class="aspect-square bg-pink-500 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-xl hover:z-10 hover:-rotate-3 cursor-pointer" style="background: linear-gradient(45deg, #ec4899, #f43f5e);"></div>
+                <div class="aspect-square bg-green-400 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-xl hover:z-10 hover:rotate-6 cursor-pointer" style="background: linear-gradient(45deg, #10b981, #3b82f6);"></div>
+                <div class="aspect-square bg-yellow-400 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-xl hover:z-10 hover:-rotate-6 cursor-pointer" style="background: linear-gradient(45deg, #f59e0b, #f43f5e);"></div>
+                <div class="aspect-square bg-purple-500 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-xl hover:z-10 hover:-rotate-2 cursor-pointer" style="background: linear-gradient(45deg, #8b5cf6, #ec4899);"></div>
+                <div class="aspect-square bg-red-500 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-xl hover:z-10 hover:rotate-2 cursor-pointer" style="background: linear-gradient(45deg, #f43f5e, #f59e0b);"></div>
+                <div class="aspect-square bg-indigo-500 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-xl hover:z-10 hover:-rotate-4 cursor-pointer" style="background: linear-gradient(45deg, #6366f1, #3b82f6);"></div>
+                <div class="aspect-square bg-orange-500 rounded-xl transition-all duration-300 hover:scale-110 hover:shadow-xl hover:z-10 hover:rotate-4 cursor-pointer" style="background: linear-gradient(45deg, #f97316, #ec4899);"></div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-30 backdrop-blur-lg py-12 border-t border-white border-opacity-20">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="text-2xl text-white hover:text-pink-400 transition-colors duration-300">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-2xl text-white hover:text-blue-400 transition-colors duration-300">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="text-2xl text-white hover:text-purple-400 transition-colors duration-300">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-2xl text-white hover:text-red-400 transition-colors duration-300">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+            <p class="opacity-80">
+                © 2023 Digital Wonderland. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 3;
+                const color = `hsl(${Math.random() * 360}, 80%, 70%)`;
+                
+                // Apply styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.backgroundColor = color;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Add hover effect to cards
+        function addCardHoverEffects() {
+            const cards = document.querySelectorAll('.card-hover-effect');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const angleX = (centerY - y) / 20;
+                    const angleY = (x - centerX) / 20;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-10px) scale(1.03)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+        
+        // Add scroll animation
+        function addScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeIn');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(el => observer.observe(el));
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            addCardHoverEffects();
+            addScrollAnimation();
+            
+            // Add click effect
+            document.addEventListener('click', (e) => {
+                const ripple = document.createElement('div');
+                ripple.classList.add('absolute', 'rounded-full', 'bg-white', 'bg-opacity-30', 'pointer-events-none', 'transform', 'scale-0', 'animate-ripple');
+                ripple.style.left = `${e.clientX}px`;
+                ripple.style.top = `${e.clientY}px`;
+                document.body.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 1000);
+            });
+        });
+        
+        // Add custom animation to tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        ripple: 'ripple 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        ripple: {
+                            '0%': { transform: 'scale(0)', opacity: '0.5' },
+                            '100%': { transform: 'scale(10)', opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
 </html>
