@@ -58,12 +58,7 @@ async function uploadToCloudflareImages(
 
 app.post('/generate-image', async (c) => {
         try {
-                // Require Replicate API token from header
-                const userToken = c.req.header('X-Replicate-Api-Token');
-                if (!userToken) {
-                        return c.json({ error: 'Missing Replicate API token. Please provide it in the X-Replicate-Api-Token header.' }, 400);
-                }
-                const replicate = new Replicate({ auth: userToken });
+                const replicate = new Replicate({ auth: c.env.REPLICATE_API_TOKEN });
                 const model = 'black-forest-labs/flux-kontext-pro';
 
                 const { prompt, input_image } = await c.req.json();
