@@ -23,16 +23,14 @@ const starterImages = [
 
 function PoweredByBanner() {
   return (
-    <div className="bg-orange-500 text-white text-center text-base md:text-lg py-2">
       <a
         href="https://replicate.com/black-forest-labs/flux-kontext-pro?utm_source=project&utm_campaign=kontext-chat"
         target="_blank"
         rel="noopener noreferrer"
-        className="underline"
+        className="block md:rounded-t underline bg-orange-500 text-white text-center text-base md:text-lg py-2 hover:bg-orange-600 focus:bg-orange-600 transition-colors"
       >
         Powered by FLUX.1 Kontext on Replicate
       </a>
-    </div>
   );
 }
 
@@ -448,12 +446,12 @@ function App() {
   }, [showUpload]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e04f0c] to-[#f47020] md:overflow-auto overflow-hidden">
+    <div className="min-h-screen md:overflow-auto overflow-hidden">
       {/* Main Content */}
       <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-auto">
         {showUpload ? (
           /* Upload Section */
-          <div className="w-full md:max-w-4xl bg-white md:shadow-md flex flex-col h-screen md:h-auto overflow-hidden md:overflow-visible">
+          <div className="w-full md:max-w-4xl bg-white md:shadow flex flex-col h-screen md:h-auto overflow-hidden md:overflow-visible flex-1">
             {/* Logo */}
             <div className="p-4 md:p-2 bg-white border-b border-gray-200">
               <img src="/kontext-chat-rainbow.png" className="w-1/3 md:w-1/4 mx-auto" alt="Kontext Chat" />
@@ -461,7 +459,7 @@ function App() {
             <PoweredByBanner />
 
             {/* Upload Area */}
-            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto md:overflow-visible pb-32 md:pb-6" style={{paddingBottom: 'calc(8rem + env(safe-area-inset-bottom))'}}>
+            <div className="flex-1 flex flex-col p-4 md:p-6 overflow-y-auto md:overflow-visible pb-8 border-x" style={{paddingBottom: 'calc(2rem + env(safe-area-inset-bottom))'}}>
               {/* Intro Text */}
               <div className="text-center mb-6">
                 <p className="text-gray-700 text-base md:text-lg">
@@ -499,16 +497,19 @@ function App() {
                 {starterImages.map((starter, idx) => (
                   <button
                     key={idx}
-                    className="aspect-square w-full rounded-xl overflow-hidden border-2 border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-all shadow-sm bg-gray-50 group"
+                    className="flex flex-col items-stretch w-full rounded-xl border border-gray-200 hover:border-orange-400 focus:border-orange-500 transition-all shadow-sm bg-gray-50 group"
                     onClick={() => handleStarterImageClick(starter)}
                     disabled={loading}
                     title={starter.suggestedPrompt}
                   >
-                    <img
-                      src={starter.imageUrl}
-                      alt={starter.suggestedPrompt}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200"
-                    />
+                    <div className="aspect-square overflow-hidden rounded-t-lg relative">
+                      <img
+                        src={starter.imageUrl}
+                        alt={starter.suggestedPrompt}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200"
+                      />
+                    </div>
+                    <p className="flex-1 text-left p-2 text-xs leading-4 border-t line-clamp-2 overflow-hidden text-ellipsis relative before:absolute before:inset-x-0 before:bottom-0 before:h-2 before:bg-gradient-to-t before:from-gray-50 before:via-gray-50 before:to-transparent before:rounded-b-xl before:mx-[2px]"><span className="font-serif text-gray-400 pr-px">"</span>{starter.suggestedPrompt}<span className="font-serif text-gray-400 pl-px">"</span></p>
                   </button>
                 ))}
               </div>
@@ -523,7 +524,7 @@ function App() {
           </div>
         ) : (
           /* Chat Section */
-          <div className="w-full md:max-w-4xl bg-white md:shadow-md overflow-hidden flex flex-col h-screen md:h-screen relative">
+          <div className="w-full md:max-w-4xl bg-white md:shadow-md overflow-hidden flex flex-col h-screen relative">
             {/* Chat Header with Logo */}
             <div className="p-4 md:p-2 bg-white border-b border-gray-200 relative flex items-center flex-shrink-0">
               <button
@@ -546,7 +547,7 @@ function App() {
             <PoweredByBanner />
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-56 md:pb-6" ref={chatContainerRef}>
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-48 md:pb-6 border-x" ref={chatContainerRef}>
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -596,7 +597,7 @@ function App() {
             </div>
 
             {/* Input Area */}
-            <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 md:relative md:border-t" style={{paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))'}}>
+            <div className="fixed bottom-0 left-0 right-0 bg-white border-t p-4 md:relative md:border-t md:border-x" style={{paddingBottom: 'calc(1rem + env(safe-area-inset-bottom))'}}>
               <form onSubmit={handleSend} className="flex items-end gap-3 max-w-4xl mx-auto">
                 <div className="flex-1 relative">
                   <div className="bg-gray-50 rounded-3xl px-4 py-3 pr-12 border-2 border-transparent focus-within:border-orange-500 transition-colors">
