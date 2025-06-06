@@ -60,6 +60,15 @@ function App() {
   // Ref for chat container and file input
   const chatContainerRef = React.useRef(null);
   const fileInputRef = React.useRef(null);
+  const textareaRef = React.useRef(null);
+
+  // Focus textarea when component mounts or when switching to chat mode
+  React.useEffect(() => {
+    if (!showUpload && textareaRef.current) {
+      textareaRef.current.focus();
+      textareaRef.current.select();
+    }
+  }, [showUpload]);
 
   // Scroll to bottom when messages change
   React.useEffect(() => {
@@ -592,6 +601,7 @@ function App() {
                 <div className="flex-1 relative">
                   <div className="bg-gray-50 rounded-3xl px-4 py-3 pr-12 border-2 border-transparent focus-within:border-orange-500 transition-colors">
                     <textarea
+                      ref={textareaRef}
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       placeholder="Describe your edit..."
