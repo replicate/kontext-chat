@@ -48,6 +48,17 @@ function App() {
   // New: track if a starter image was used (for future logic if needed)
   const [starterUsed, setStarterUsed] = React.useState(false);
   
+  // Replicate API token state
+  const [replicateToken, setReplicateToken] = React.useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('replicateApiToken') || '';
+    }
+    return '';
+  });
+  const [showTokenModal, setShowTokenModal] = React.useState(!replicateToken);
+  const [tokenInput, setTokenInput] = React.useState('');
+  const [tokenError, setTokenError] = React.useState('');
+
   // Simple desktop check
   const [isDesktop, setIsDesktop] = React.useState(false);
   React.useEffect(() => {
@@ -279,7 +290,7 @@ function App() {
   const handleSend = async (e) => {
     e.preventDefault();
     const lastImageBlob = getLastImageBlob();
-    if (!input.trim() || loading || !lastImageBlob) return;
+    if (!input.trim() || loading || !lastImageBlob || !replicateToken) return;
 
     const userMsg = { type: 'text', text: input, from: 'user', id: Date.now() };
     setMessages(prev => [...prev, userMsg]);
@@ -309,7 +320,7 @@ function App() {
 
       const res = await fetch('/generate-image', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-Replicate-Api-Token': replicateToken },
         body: JSON.stringify(requestBody),
         signal: controller.signal
       });
@@ -447,8 +458,64 @@ function App() {
     }
   }, [showUpload]);
 
+  React.useEffect(() => {
+    if (!replicateToken) {
+      setShowTokenModal(true);
+    } else {
+      setShowTokenModal(false);
+    }
+  }, [replicateToken]);
+
+  function handleTokenSubmit(e) {
+    e.preventDefault();
+    if (!tokenInput.trim()) {
+      setTokenError('Please enter your Replicate API token.');
+      return;
+    }
+    localStorage.setItem('replicateApiToken', tokenInput.trim());
+    setReplicateToken(tokenInput.trim());
+    setShowTokenModal(false);
+    setTokenInput('');
+    setTokenError('');
+  }
+
+  function handleTokenLogout() {
+    localStorage.removeItem('replicateApiToken');
+    setReplicateToken('');
+    setShowTokenModal(true);
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#e04f0c] to-[#f47020] md:overflow-auto overflow-hidden">
+      {/* Replicate API Token Modal */}
+      {showTokenModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+          <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full flex flex-col items-center">
+            <img src="/kontext-chat-rainbow.png" className="w-1/3 mx-auto mb-4" alt="Kontext Chat" />
+            <h2 className="text-xl font-bold mb-2 text-center">Enter your Replicate API Token</h2>
+            <p className="text-gray-700 text-center mb-4">To use Kontext Chat, you'll need a Replicate API token.<br />
+              <a href="https://replicate.com/account/api-tokens?new-token-name=kontext-chat" target="_blank" rel="noopener noreferrer" className="underline text-orange-600">Create a token here</a> and paste it below.
+            </p>
+            <form onSubmit={handleTokenSubmit} className="w-full flex flex-col items-center">
+              <input
+                type="text"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2 text-base"
+                placeholder="Paste your Replicate API token"
+                value={tokenInput}
+                onChange={e => setTokenInput(e.target.value)}
+                autoFocus
+              />
+              {tokenError && <div className="text-red-600 text-sm mb-2">{tokenError}</div>}
+              <button
+                type="submit"
+                className="w-full bg-orange-500 hover:bg-orange-600 text-white rounded-lg px-4 py-2 font-semibold transition-colors"
+              >
+                Save Token
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
       {/* Main Content */}
       <div className="min-h-screen flex flex-col md:flex md:items-center h-screen md:h-auto">
         {showUpload ? (
@@ -542,6 +609,18 @@ function App() {
                 onClick={resetApp}
                 title="Back to upload"
               />
+              {/* Token logout button */}
+              {replicateToken && (
+                <button
+                  onClick={handleTokenLogout}
+                  className="absolute right-4 w-8 h-8 bg-gray-200 hover:bg-red-500 text-gray-700 hover:text-white rounded-full flex items-center justify-center transition-all duration-200"
+                  title="Remove Replicate API Token"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
+              )}
             </div>
             <PoweredByBanner />
 
